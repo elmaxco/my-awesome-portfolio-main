@@ -1,73 +1,136 @@
-# Welcome to your Lovable project
+# My Awesome Portfolio
 
-## Project info
+A modern, responsive portfolio website showcasing projects and skills. Built with cutting-edge web technologies for optimal performance and user experience.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Features
 
-## How can I edit this code?
+- **Responsive Design** - Looks great on all devices (mobile, tablet, desktop)
+- **Modern UI** - Built with shadcn/ui components for a polished interface
+- **Fast Performance** - Lightning-fast development and production builds with Vite
+- **Type Safe** - Full TypeScript support for reliability
+- **Accessibility** - Designed with accessibility best practices in mind
+- **Smooth Animations** - Enhanced user experience with carefully crafted transitions
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- **[Vite](https://vitejs.dev/)** - Next generation frontend tooling
+- **[React](https://react.dev/)** - UI library for building interactive components
+- **[TypeScript](https://www.typescriptlang.org/)** - JavaScript with static typing
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[shadcn/ui](https://ui.shadcn.com/)** - High-quality, reusable components
+- **[Vitest](https://vitest.dev/)** - Unit testing framework
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📋 Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js (v16 or higher)
+- npm or bun package manager
 
-**Use your preferred IDE**
+## 🏃 Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to the project directory
+cd my-awesome-portfolio
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
+# or
+bun install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Development
+
+```sh
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Building
 
-**Use GitHub Codespaces**
+```sh
+# Build for production
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Preview production build
+npm run preview
+```
 
-## What technologies are used for this project?
+## 📝 Available Scripts
 
-This project is built with:
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Create an optimized production build
+- `npm run build:dev` - Build for development mode
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint to check code quality
+- `npm run test` - Run unit tests
+- `npm run test:watch` - Run tests in watch mode
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📁 Project Structure
 
-## How can I deploy this project?
+```
+src/
+├── components/          # Reusable React components
+│   ├── ui/             # shadcn/ui components
+│   ├── About.tsx       # About section
+│   ├── Contact.tsx     # Contact section
+│   ├── Hero.tsx        # Hero section
+│   ├── Projects.tsx    # Projects showcase
+│   └── ...
+├── pages/              # Page components
+├── hooks/              # Custom React hooks
+├── lib/                # Utility functions
+└── index.css           # Global styles
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 🎨 Customization
 
-## Can I connect a custom domain to my Lovable project?
+### Colors & Styling
 
-Yes, you can!
+Customize the appearance by editing:
+- `tailwind.config.ts` - Tailwind CSS configuration
+- `postcss.config.js` - PostCSS configuration
+- `src/index.css` - Global styles
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Content
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Update portfolio content by modifying the component files in `src/components/`
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+```sh
+npm run build
+# Deploy the dist/ folder to Vercel
+```
+
+### Other Platforms
+
+- **Netlify** - Connect your GitHub repo and set build command to `npm run build`
+- **GitHub Pages** - Configure Vite for static site generation
+- **Traditional Hosting** - Upload the `dist/` folder to your web server
+
+## 📚 Learn More
+
+- [Vite Documentation](https://vitejs.dev/guide/)
+- [React Documentation](https://react.dev/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [shadcn/ui Documentation](https://ui.shadcn.com/)
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork this project and submit pull requests.
+
+---
+
+**Built with ❤️**
