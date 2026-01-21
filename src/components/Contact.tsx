@@ -85,11 +85,13 @@ const Contact = () => {
               </div>
               
               {weather && (
-                <div className="flex items-center gap-3 glass rounded-lg p-3">
-                  <CloudRain size={24} className="text-primary" />
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary">
+                    <CloudRain size={24} />
+                  </div>
                   <div>
-                    <p className="text-2xl font-bold">{weather.temp}°C</p>
-                    <p className="text-xs text-muted-foreground">{weather.description}</p>
+                    <p className="text-sm text-muted-foreground">Weather</p>
+                    <p className="font-medium">{weather.temp}°C • {weather.description}</p>
                   </div>
                 </div>
               )}
