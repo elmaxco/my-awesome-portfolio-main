@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
 
@@ -263,36 +263,6 @@ const Hero = () => {
             >
               Get In Touch
             </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center justify-center gap-6"
-          >
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="mailto:hello@example.com"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Mail size={24} />
-            </a>
           </motion.div>
         </motion.div>
 
