@@ -276,18 +276,17 @@ const Hero = () => {
         onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
       >
         <div className="relative flex flex-col items-center">
-          {/* Animated ring */}
+          {/* Glow effect */}
           <motion.div
             animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [0.5, 0, 0.5]
+              opacity: [0.3, 0.6, 0.3]
             }}
             transition={{ 
               duration: 2, 
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute w-16 h-16 rounded-full border-2 border-primary"
+            className="absolute inset-0 rounded-full bg-primary/20 blur-xl"
           />
           
           {/* Inner circle with arrow */}
@@ -301,10 +300,10 @@ const Hero = () => {
                 ease: "easeInOut"
               }
             }}
-            className="w-12 h-12 rounded-full glass border border-primary/30 flex items-center justify-center group hover:border-primary transition-colors"
+            className="relative w-12 h-12 rounded-full glass border-2 border-primary/50 flex items-center justify-center group hover:border-primary transition-all hover:shadow-lg hover:shadow-primary/50"
           >
             <ArrowDown 
-              className="text-primary group-hover:text-primary animate-pulse" 
+              className="text-primary" 
               size={20} 
             />
           </motion.div>
