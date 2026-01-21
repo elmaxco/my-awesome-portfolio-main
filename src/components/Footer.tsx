@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -7,10 +7,10 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="text-muted-foreground text-sm">
-              Designed & Built with ❤️
+              Designed & Built by Max Jacobsson
             </p>
             <p className="text-muted-foreground text-xs mt-1">
-              © {new Date().getFullYear()} Your Name. All rights reserved.
+              © {new Date().getFullYear()} Max Jacobsson. All rights reserved.
             </p>
           </div>
 
@@ -30,20 +30,6 @@ const Footer = () => {
               className="text-muted-foreground hover:text-primary transition-colors"
             >
               <Linkedin size={20} />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Twitter size={20} />
-            </a>
-            <a
-              href="mailto:hello@example.com"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Mail size={20} />
             </a>
           </div>
         </div>
