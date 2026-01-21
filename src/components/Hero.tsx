@@ -6,6 +6,17 @@ import { useState, useEffect } from "react";
 const Hero = () => {
   const [text, setText] = useState("");
   const fullText = "Max Jacobsson";
+  
+  const [roleText, setRoleText] = useState("");
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  const roles = [
+    ".NET Developer",
+    "Web Developer",
+    "Full-Stack Developer",
+    "CMS Specialist"
+  ];
 
   useEffect(() => {
     let index = 0;
@@ -20,6 +31,34 @@ const Hero = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && roleText === currentRole) {
+      // Wait before starting to delete
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && roleText === "") {
+      // Move to next role
+      setIsDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    } else {
+      // Type or delete character
+      const typingSpeed = isDeleting ? 50 : 100;
+      timeout = setTimeout(() => {
+        setRoleText((prev) => {
+          if (isDeleting) {
+            return currentRole.slice(0, prev.length - 1);
+          } else {
+            return currentRole.slice(0, prev.length + 1);
+          }
+        });
+      }, typingSpeed);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [roleText, isDeleting, roleIndex]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -193,9 +232,14 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-muted-foreground mb-8 font-light"
+            className="text-xl md:text-2xl text-muted-foreground mb-8 font-light min-h-[2em] flex items-center justify-center"
           >
-            Full-Stack Developer & Creative Problem Solver
+            <span>{roleText}</span>
+            <motion.span
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ duration: 0.8, repeat: Infinity }}
+              className="inline-block w-0.5 h-6 md:h-8 bg-primary ml-1"
+            />
           </motion.p>
 
           <motion.div
