@@ -124,7 +124,7 @@ const Contact = () => {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="bg-secondary/50 border-border focus:border-primary"
+                  className="bg-secondary/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   required
                 />
               </div>
@@ -134,7 +134,7 @@ const Contact = () => {
                   placeholder="Your Email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="bg-secondary/50 border-border focus:border-primary"
+                  className="bg-secondary/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   required
                 />
               </div>
@@ -144,18 +144,17 @@ const Contact = () => {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="bg-secondary/50 border-border focus:border-primary resize-none"
+                  className="bg-secondary/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 resize-none"
                   required
                 />
               </div>
-              <Button
+              <button
                 type="submit"
-                size="lg"
-                className="w-full bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity glow-primary"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium"
               >
-                <Send size={18} className="mr-2" />
+                <Send size={20} />
                 Send Message
-              </Button>
+              </button>
             </form>
           </motion.div>
         </div>
