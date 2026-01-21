@@ -48,7 +48,7 @@ const Navigation = () => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            &lt;YN /&gt;
+            &lt;Max Jacobsson/&gt;
           </a>
 
           {/* Desktop Navigation */}
