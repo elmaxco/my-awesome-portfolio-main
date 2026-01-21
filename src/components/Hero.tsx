@@ -1,8 +1,26 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "./ui/button";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
+  const [text, setText] = useState("");
+  const fullText = "Max Jacobsson";
+
+  useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index <= fullText.length) {
+        setText(fullText.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated grid background */}
@@ -159,9 +177,16 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 min-h-[1.2em]"
           >
-            <span className="text-gradient">Max Jacobsson</span>
+            <span className="text-gradient">
+              {text}
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="inline-block w-1 h-[0.9em] bg-primary ml-1 align-middle"
+              />
+            </span>
           </motion.h1>
 
           <motion.p
