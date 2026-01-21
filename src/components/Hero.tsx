@@ -265,64 +265,64 @@ const Hero = () => {
             </Button>
           </motion.div>
         </motion.div>
-
-        {/* Animated Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer"
-          onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-        >
-          <div className="relative flex flex-col items-center">
-            {/* Animated ring */}
-            <motion.div
-              animate={{ 
-                scale: [1, 1.3, 1],
-                opacity: [0.5, 0, 0.5]
-              }}
-              transition={{ 
-                duration: 2, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute w-16 h-16 rounded-full border-2 border-primary"
-            />
-            
-            {/* Inner circle with arrow */}
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              animate={{ y: [0, 8, 0] }}
-              transition={{ 
-                y: {
-                  duration: 1.5, 
-                  repeat: Infinity, 
-                  ease: "easeInOut"
-                }
-              }}
-              className="w-12 h-12 rounded-full glass border border-primary/30 flex items-center justify-center group hover:border-primary transition-colors"
-            >
-              <ArrowDown 
-                className="text-primary group-hover:text-primary animate-pulse" 
-                size={20} 
-              />
-            </motion.div>
-            
-            {/* Scroll text */}
-            <motion.p
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ 
-                duration: 2, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="text-xs text-muted-foreground font-mono mt-2 tracking-wider"
-            >
-              SCROLL
-            </motion.p>
-          </div>
-        </motion.div>
       </div>
+
+      {/* Animated Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-20"
+        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+      >
+        <div className="relative flex flex-col items-center">
+          {/* Animated ring */}
+          <motion.div
+            animate={{ 
+              scale: [1, 1.3, 1],
+              opacity: [0.5, 0, 0.5]
+            }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute w-16 h-16 rounded-full border-2 border-primary"
+          />
+          
+          {/* Inner circle with arrow */}
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            animate={{ y: [0, 8, 0] }}
+            transition={{ 
+              y: {
+                duration: 1.5, 
+                repeat: Infinity, 
+                ease: "easeInOut"
+              }
+            }}
+            className="w-12 h-12 rounded-full glass border border-primary/30 flex items-center justify-center group hover:border-primary transition-colors"
+          >
+            <ArrowDown 
+              className="text-primary group-hover:text-primary animate-pulse" 
+              size={20} 
+            />
+          </motion.div>
+          
+          {/* Scroll text */}
+          <motion.p
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="text-xs text-muted-foreground font-mono mt-2 tracking-wider"
+          >
+            SCROLL
+          </motion.p>
+        </div>
+      </motion.div>
     </section>
   );
 };
