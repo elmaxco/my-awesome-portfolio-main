@@ -13,6 +13,11 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [weather, setWeather] = useState<{
     temp: number;
     description: string;
@@ -39,6 +44,37 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Reset errors
+    const newErrors = {
+      name: "",
+      email: "",
+      message: "",
+    };
+    
+    // Validate fields
+    if (!formData.name.trim()) {
+      newErrors.name = "Please enter your name";
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = "Please enter your email";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = "Please enter a message";
+    }
+    
+    // If there are errors, set them and return
+    if (newErrors.name || newErrors.email || newErrors.message) {
+      setErrors(newErrors);
+      return;
+    }
+    
+    // Clear errors and submit
+    setErrors({ name: "", email: "", message: "" });
     toast({
       title: "Message sent!",
       description: "Thank you for reaching out. I'll get back to you soon!",
@@ -123,30 +159,51 @@ const Contact = () => {
                 <Input
                   placeholder="Your Name"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="bg-secondary/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                  required
+                  onChange={(e) => {
+                    setFormData({ ...formData, name: e.target.value });
+                    if (errors.name) setErrors({ ...errors, name: "" });
+                  }}
+                  className={`bg-secondary/50 border-border focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                    errors.name ? "border-red-500 focus:border-red-500" : "focus:border-primary"
+                  }`}
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                )}
               </div>
               <div>
                 <Input
                   type="email"
                   placeholder="Your Email"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="bg-secondary/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                  required
+                  onChange={(e) => {
+                    setFormData({ ...formData, email: e.target.value });
+                    if (errors.email) setErrors({ ...errors, email: "" });
+                  }}
+                  className={`bg-secondary/50 border-border focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                    errors.email ? "border-red-500 focus:border-red-500" : "focus:border-primary"
+                  }`}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
               <div>
                 <Textarea
                   placeholder="Your Message"
                   rows={5}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="bg-secondary/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 resize-none"
-                  required
+                  onChange={(e) => {
+                    setFormData({ ...formData, message: e.target.value });
+                    if (errors.message) setErrors({ ...errors, message: "" });
+                  }}
+                  className={`bg-secondary/50 border-border focus-visible:ring-0 focus-visible:ring-offset-0 resize-none ${
+                    errors.message ? "border-red-500 focus:border-red-500" : "focus:border-primary"
+                  }`}
                 />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                )}
               </div>
               <button
                 type="submit"
