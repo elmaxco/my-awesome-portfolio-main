@@ -8,7 +8,7 @@ const navLinks = [
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
-  { name: "Download Resume", href: "/resume.pdf", isDownload: true },
+  { name: "Download Resume", href: "/CV%20Max%20Jacobsson.pdf", isDownload: true },
 ];
 
 const Navigation = () => {
