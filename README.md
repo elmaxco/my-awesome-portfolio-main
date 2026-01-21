@@ -133,4 +133,4 @@ Contributions are welcome! Feel free to fork this project and submit pull reques
 
 ---
 
-**Built with ❤️**
+**Built by Max Jacobsson**
