@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send } from "lucide-react";
+import { MapPin, Send, CloudRain } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -13,6 +13,29 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [weather, setWeather] = useState<{
+    temp: number;
+    description: string;
+    icon: string;
+  } | null>(null);
+
+  useEffect(() => {
+    // Fetch weather data for Stockholm
+    fetch('https://wttr.in/Stockholm?format=j1')
+      .then(res => res.json())
+      .then(data => {
+        const current = data.current_condition[0];
+        setWeather({
+          temp: Math.round(parseInt(current.temp_C)),
+          description: current.weatherDesc[0].value,
+          icon: current.weatherCode
+        });
+      })
+      .catch(() => {
+        // Fallback weather if API fails
+        setWeather({ temp: 5, description: "Cloudy", icon: "116" });
+      });
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,41 +71,41 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="space-y-6"
           >
-            <div>
-              <h3 className="text-2xl font-bold mb-6">Let's work together</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                I'm currently available for freelance work and full-time opportunities. 
-                If you have a project that needs coding magic, don't hesitate to reach out.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <a
-                    href="mailto:hello@example.com"
-                    className="font-medium hover:text-primary transition-colors"
-                  >
-                    hello@example.com
-                  </a>
-                </div>
-              </div>
-
+            <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-lg bg-primary/10 text-primary">
                   <MapPin size={24} />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="font-medium">Your City, Country</p>
+                  <p className="font-medium">Stockholm, Sweden</p>
                 </div>
               </div>
+              
+              {weather && (
+                <div className="flex items-center gap-3 glass rounded-lg p-3">
+                  <CloudRain size={24} className="text-primary" />
+                  <div>
+                    <p className="text-2xl font-bold">{weather.temp}°C</p>
+                    <p className="text-xs text-muted-foreground">{weather.description}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="rounded-2xl overflow-hidden h-[300px] border border-border">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d129622.17159954537!2d17.9216940794673!3d59.32623618964673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f763119640bcb%3A0xa80d27d3679d7766!2sStockholm%2C%20Sweden!5e0!3m2!1sen!2s!4v1705860000000!5m2!1sen!2s"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Stockholm, Sweden"
+              />
             </div>
           </motion.div>
 
