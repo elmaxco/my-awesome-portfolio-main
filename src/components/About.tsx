@@ -24,19 +24,21 @@ const About = () => {
           >
             <div className="glass rounded-2xl p-8 space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm a passionate developer who loves building things for the web. 
-                My journey started with curiosity about how websites work, and it 
-                evolved into a full-fledged career in software development.
+                Hi, I'm Max! I started my programming career in 2024 at Nackademin 
+                with a focus on .NET development. What began as a fascination with 
+                how software works has grown into a passion for building modern web 
+                applications.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I specialize in creating robust applications using modern technologies. 
-                Whether it's crafting intuitive user interfaces or building scalable 
-                backend systems, I enjoy every aspect of the development process.
+                I'm currently an intern at Webbkompaniet, where I work with CMS 
+                systems and gain hands-on experience in web development. I enjoy 
+                learning new technologies and applying them to create practical 
+                solutions.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, 
-                contributing to open-source projects, or sharing knowledge with 
-                the developer community.
+                I'm always eager to take on new challenges and expand my skill set. 
+                Whether it's working with .NET, exploring CMS platforms, or diving 
+                into new frameworks, I'm committed to growing as a developer.
               </p>
             </div>
           </motion.div>
