@@ -8,6 +8,7 @@ const projects = [
       "Modern multilingual news website built with Umbraco CMS. Features real-time updates, category filtering, weather integration, and WCAG AA accessibility compliance.",
     technologies: ["Umbraco", "C#", ".NET 8", "Razor", "SQL Server", "TypeScript"],
     github: "https://github.com/ninohaegglund/drnews-cms",
+    image: "/drnews.png",
     featured: true,
   },
   {
@@ -81,9 +82,17 @@ const Projects = () => {
               >
                 <div className="bg-gradient-card rounded-2xl p-1 glow-primary">
                   <div className="bg-secondary rounded-xl aspect-video flex items-center justify-center overflow-hidden">
-                    <div className="text-6xl opacity-20">
-                      <Folder size={80} />
-                    </div>
+                    {project.image ? (
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="text-6xl opacity-20">
+                        <Folder size={80} />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
