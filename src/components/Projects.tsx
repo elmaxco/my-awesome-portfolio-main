@@ -3,6 +3,14 @@ import { ExternalLink, Github, Folder, Star, GitFork } from "lucide-react";
 
 const projects = [
   {
+    title: "Dr. News CMS",
+    description:
+      "Modern multilingual news website built with Umbraco CMS. Features real-time updates, category filtering, weather integration, and WCAG AA accessibility compliance.",
+    technologies: ["Umbraco", "C#", ".NET 8", "Razor", "SQL Server", "TypeScript"],
+    github: "https://github.com/ninohaegglund/drnews-cms",
+    featured: true,
+  },
+  {
     title: "E-Commerce Platform",
     description:
       "A full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.",
