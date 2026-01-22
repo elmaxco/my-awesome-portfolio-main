@@ -12,12 +12,12 @@ const projects = [
     featured: true,
   },
   {
-    title: "E-Commerce Platform",
+    title: "AlphaPortal - Admin Portal",
     description:
-      "A full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    github: "https://github.com",
-    live: "https://example.com",
+      "Comprehensive project management and client administration portal built with ASP.NET Core Razor Pages. Features project tracking, client management, team monitoring, and two-factor authentication.",
+    technologies: ["ASP.NET Core", "C#", "Razor Pages", "SQL Server", "Bootstrap"],
+    github: "https://github.com/elmaxco/AlphaAdminPortal",
+    image: "https://cdn.sanity.io/images/rmpdth2p/production/c1d1d87d43debb3cc23fe2327f63c1b1b7f2fc45-44x41.svg",
     featured: true,
   },
   {
