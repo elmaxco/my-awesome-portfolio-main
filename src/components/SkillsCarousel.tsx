@@ -21,8 +21,8 @@ const skills = [
   { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
   { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
   { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
-  { name: "Umbraco", icon: "https://marketplace.umbraco.com/media/qeubpklw/icon_transparent.png" },
-  { name: "Optimizely", icon: "https://www.optimizely.com/globalassets/02.-global-images/navigation/optimizely-logo.svg" },
+  { name: "Umbraco", icon: "/Umbracopic.webp" },
+  { name: "Optimizely", icon: "/optimizely-seeklogo.png" },
 ];
 
 const experienceStats = [
@@ -82,7 +82,11 @@ const SkillsCarousel = () => {
                   <img
                     src={skill.icon}
                     alt={skill.name}
-                    className="w-12 h-12 group-hover:scale-110 transition-transform"
+                    className={`group-hover:scale-110 transition-transform ${
+                      skill.name === "Optimizely" || skill.name === "Umbraco" 
+                        ? "w-16 h-16 object-contain" 
+                        : "w-12 h-12"
+                    }`}
                   />
                   <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                     {skill.name}
@@ -125,7 +129,11 @@ const SkillsCarousel = () => {
                   <img
                     src={skill.icon}
                     alt={skill.name}
-                    className="w-12 h-12 group-hover:scale-110 transition-transform"
+                    className={`group-hover:scale-110 transition-transform ${
+                      skill.name === "Optimizely" || skill.name === "Umbraco" 
+                        ? "w-16 h-16 object-contain" 
+                        : "w-12 h-12"
+                    }`}
                   />
                   <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                     {skill.name}
