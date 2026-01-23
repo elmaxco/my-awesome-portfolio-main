@@ -56,26 +56,21 @@ const SkillsCarousel = () => {
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
-        <div className="flex overflow-hidden">
+        <div className="relative overflow-hidden w-full">
           <motion.div
-            className="flex"
-            animate={{
-              x: [0, -1792],
-            }}
+            className="flex gap-0 w-max"
+            animate={{ x: ["0%", "-50%"] }}
             transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 30,
-                ease: "linear",
-              },
+              duration: 30,
+              ease: "linear",
+              repeat: Infinity,
             }}
           >
-            {/* Double the skills for seamless loop */}
             {[...skills, ...skills].map((skill, index) => (
               <div
                 key={`${skill.name}-${index}`}
-                className="flex-shrink-0 mx-4"
+                className="flex-shrink-0 mx-2"
+                style={{ width: '144px' }}
               >
                 <div className="glass rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-3 hover:border-primary/50 transition-colors group">
                   <img
@@ -103,26 +98,21 @@ const SkillsCarousel = () => {
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
-        <div className="flex overflow-hidden">
+        <div className="relative overflow-hidden w-full">
           <motion.div
-            className="flex"
-            animate={{
-              x: [-1792, 0],
-            }}
+            className="flex gap-0 w-max"
+            animate={{ x: ["-50%", "0%"] }}
             transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 35,
-                ease: "linear",
-              },
+              duration: 35,
+              ease: "linear",
+              repeat: Infinity,
             }}
           >
-            {/* Reverse order for variety */}
             {[...skills, ...skills].reverse().map((skill, index) => (
               <div
                 key={`${skill.name}-reverse-${index}`}
-                className="flex-shrink-0 mx-4"
+                className="flex-shrink-0 mx-2"
+                style={{ width: '144px' }}
               >
                 <div className="glass rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-3 hover:border-primary/50 transition-colors group">
                   <img

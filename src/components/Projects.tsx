@@ -21,10 +21,10 @@ const projects = [
     featured: true,
   },
   {
-    title: "AlphaPortal - Admin Portal",
+    title: "AlphaPortal - Project Management",
     description:
-      "Comprehensive project management and client administration portal built with ASP.NET Core Razor Pages. Features project tracking, client management, team monitoring, and two-factor authentication.",
-    technologies: ["ASP.NET Core", "C#", "Razor Pages", "SQL Server", "Bootstrap"],
+      "Full-stack MVC project management system built with ASP.NET Core. Features real-time collaboration with SignalR, rich text editing with Quill WYSIWYG editor, secure file storage using Azure Blob Storage, and Identity-based authentication. Deployed to Azure with integrated database and cloud storage services.",
+    technologies: ["ASP.NET Core", "C#", "SignalR", "Azure Blob Storage", "Entity Framework Core", "Identity", "SQL Server"],
     github: "https://github.com/elmaxco/AlphaAdminPortal",
     image: "https://cdn.sanity.io/images/rmpdth2p/production/c1d1d87d43debb3cc23fe2327f63c1b1b7f2fc45-44x41.svg",
     featured: true,
