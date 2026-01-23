@@ -272,10 +272,10 @@ const Hero = () => {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-20 flex justify-center"
         onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
       >
-        <div className="relative flex flex-col items-center">
+        <div className="relative flex items-center justify-center">
           {/* Glow effect */}
           <motion.div
             animate={{ 
@@ -286,7 +286,7 @@ const Hero = () => {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute inset-0 rounded-full bg-primary/20 blur-xl"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-primary/30 blur-xl"
           />
           
           {/* Inner circle with arrow */}
@@ -300,26 +300,13 @@ const Hero = () => {
                 ease: "easeInOut"
               }
             }}
-            className="relative w-12 h-12 rounded-full glass border-2 border-primary/50 flex items-center justify-center group hover:border-primary transition-all hover:shadow-lg hover:shadow-primary/50"
+            className="relative w-12 h-12 rounded-full glass border-2 border-primary/50 flex items-center justify-center group hover:border-primary transition-all shadow-[0_0_20px_rgba(45,212,191,0.3)]"
           >
             <ArrowDown 
               className="text-primary" 
               size={20} 
             />
           </motion.div>
-          
-          {/* Scroll text */}
-          <motion.p
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="text-xs text-muted-foreground font-mono mt-2 tracking-wider"
-          >
-            SCROLL
-          </motion.p>
         </div>
       </motion.div>
     </section>
