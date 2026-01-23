@@ -51,7 +51,7 @@ const SkillsCarousel = () => {
       </div>
 
       {/* Infinite scrolling carousel - first row */}
-      <div className="relative mb-8">
+      <div className="relative mb-8 max-w-6xl mx-auto">
         {/* Gradient overlays for smooth edges */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
@@ -98,7 +98,7 @@ const SkillsCarousel = () => {
       </div>
 
       {/* Second row - reverse direction */}
-      <div className="relative">
+      <div className="relative max-w-6xl mx-auto">
         {/* Gradient overlays for smooth edges */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
