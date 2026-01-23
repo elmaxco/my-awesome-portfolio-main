@@ -101,6 +101,8 @@ const Projects = () => {
                 autoRotate={true}
                 cameraControls={true}
                 shadowIntensity="1"
+                disableZoom={true}
+                touchAction="pan-y"
                 className="rounded-xl"
               />
             </div>

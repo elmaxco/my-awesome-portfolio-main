@@ -9,6 +9,8 @@ interface ModelViewerProps {
   shadowIntensity?: string;
   className?: string;
   style?: React.CSSProperties;
+  disableZoom?: boolean;
+  touchAction?: string;
 }
 
 const ModelViewer = ({
@@ -18,7 +20,9 @@ const ModelViewer = ({
   cameraControls = true,
   shadowIntensity = '1',
   className = '',
-  style = {}
+  style = {},
+  disableZoom = false,
+  touchAction = 'pan-y'
 }: ModelViewerProps) => {
   const viewerRef = useRef<HTMLElement>(null);
 
@@ -37,6 +41,8 @@ const ModelViewer = ({
       auto-rotate={autoRotate}
       camera-controls={cameraControls}
       shadow-intensity={shadowIntensity}
+      touch-action={touchAction}
+      disable-zoom={disableZoom}
       style={{
         width: '100%',
         height: '100%',
