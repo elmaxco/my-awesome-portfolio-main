@@ -3,6 +3,15 @@ import { ExternalLink, Github, Folder, Star, GitFork } from "lucide-react";
 
 const projects = [
   {
+    title: "Ventixe - Event Planning Platform",
+    description:
+      "Event planning web application built with ASP.NET Core as a collaborative team project. Features full CRUD operations for event management, secure authentication and authorization, comprehensive form validation, and a modern responsive interface for seamless event coordination.",
+    technologies: ["ASP.NET Core", "C#", "JavaScript", "SQL Server", "Authentication", "Team Project"],
+    github: "https://github.com/group-6-aspnet2/webapp-ventixe",
+    image: "/images/ventixe.png",
+    featured: true,
+  },
+  {
     title: "Dr. News CMS",
     description:
       "Modern multilingual news website built with Umbraco CMS. Features real-time updates, category filtering, weather integration, and WCAG AA accessibility compliance.",
@@ -86,7 +95,7 @@ const Projects = () => {
                       <img 
                         src={project.image} 
                         alt={project.title}
-                        className="w-full h-full object-cover"
+                        className={`${project.title.includes('Ventixe') ? 'w-3/4 h-3/4 object-contain' : 'w-full h-full object-cover'}`}
                       />
                     ) : (
                       <div className="text-6xl opacity-20">
