@@ -20,7 +20,7 @@ const skills = [
   { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
   { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
   { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
-  { name: "Umbraco", icon: "/Ubraco.jpg" },
+  { name: "Umbraco", icon: "/UbracoTrans.png" },
   { name: "Optimizely", icon: "/optimizely-seeklogo.png" },
 ];
 
