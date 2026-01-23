@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
-import "@google/model-viewer";
 
 const Hero = () => {
   const [text, setText] = useState("");
@@ -198,99 +197,74 @@ const Hero = () => {
       </div>
 
       <div className="container relative z-10 px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center max-w-4xl mx-auto"
+        >
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0"
+            transition={{ duration: 0.6 }}
+            className="text-primary font-mono text-sm md:text-base mb-4 tracking-wider"
           >
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-primary font-mono text-sm md:text-base mb-4 tracking-wider"
-            >
-              Hello, I'm
-            </motion.p>
+            Hello, I'm
+          </motion.p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-7xl font-bold mb-6 min-h-[1.2em]"
-            >
-              <span className="text-gradient">
-                {text}
-                <motion.span
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                  className="inline-block w-1 h-[0.9em] bg-primary ml-1 align-middle"
-                />
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl md:text-2xl text-muted-foreground mb-8 font-light min-h-[2em] flex items-center justify-center lg:justify-start"
-            >
-              <span>{roleText}</span>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 min-h-[1.2em]"
+          >
+            <span className="text-gradient">
+              {text}
               <motion.span
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
-                className="inline-block w-0.5 h-6 md:h-8 bg-primary ml-1"
+                className="inline-block w-1 h-[0.9em] bg-primary ml-1 align-middle"
               />
-            </motion.p>
+            </span>
+          </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-12"
-            >
-              <Button
-                size="lg"
-                className="bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity glow-primary"
-                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                View My Work
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-primary/50 hover:bg-primary/10 hover:border-primary"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Get In Touch
-              </Button>
-            </motion.div>
-          </motion.div>
-
-          {/* 3D Model Viewer */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative h-[400px] lg:h-[500px] hidden lg:block"
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl md:text-2xl text-muted-foreground mb-8 font-light min-h-[2em] flex items-center justify-center"
           >
-            <model-viewer
-              src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-              alt="3D Model"
-              auto-rotate
-              camera-controls
-              shadow-intensity="1"
-              style={{
-                width: '100%',
-                height: '100%',
-                background: 'transparent'
-              }}
-              className="rounded-2xl"
+            <span>{roleText}</span>
+            <motion.span
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ duration: 0.8, repeat: Infinity }}
+              className="inline-block w-0.5 h-6 md:h-8 bg-primary ml-1"
             />
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-4 mb-12"
+          >
+            <Button
+              size="lg"
+              className="bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity glow-primary"
+              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              View My Work
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-primary/50 hover:bg-primary/10 hover:border-primary"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              Get In Touch
+            </Button>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Animated Scroll Indicator */}
