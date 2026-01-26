@@ -136,17 +136,18 @@ const Contact = () => {
             )}
           </button>
           
-          <div className="flex items-center gap-4 glass rounded-xl p-4 w-full">
+          <a 
+            href="mailto:max.jacobsson1999@hotmail.com"
+            className="flex items-center gap-4 glass rounded-xl p-4 w-full hover:bg-primary/5 transition-colors"
+          >
             <div className="p-3 rounded-lg bg-primary/10 text-primary">
               <Mail size={24} />
             </div>
             <div className="text-left">
               <p className="text-sm text-muted-foreground">Email</p>
-              <a href="mailto:max.jacobsson1999@hotmail.com" className="font-medium hover:text-primary transition-colors">
-                max.jacobsson1999@hotmail.com
-              </a>
+              <p className="font-medium">max.jacobsson1999@hotmail.com</p>
             </div>
-          </div>
+          </a>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
