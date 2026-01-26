@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Send, Mail } from "lucide-react";
+import { MapPin, Send, Mail, CloudRain } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -27,6 +27,29 @@ const Contact = () => {
     message: "",
   });
   const [mapOpen, setMapOpen] = useState(false);
+  const [weather, setWeather] = useState<{
+    temp: number;
+    description: string;
+    icon: string;
+  } | null>(null);
+
+  useEffect(() => {
+    // Fetch weather data for Stockholm
+    fetch('https://wttr.in/Stockholm?format=j1')
+      .then(res => res.json())
+      .then(data => {
+        const current = data.current_condition[0];
+        setWeather({
+          temp: Math.round(parseInt(current.temp_C)),
+          description: current.weatherDesc[0].value,
+          icon: current.weatherCode
+        });
+      })
+      .catch(() => {
+        // Fallback weather if API fails
+        setWeather({ temp: 5, description: "Cloudy", icon: "116" });
+      });
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,22 +115,28 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 max-w-3xl mx-auto"
+          className="grid md:grid-cols-2 gap-12 mb-12 max-w-5xl mx-auto px-6"
         >
           <button
             onClick={() => setMapOpen(true)}
-            className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full sm:w-auto"
+            className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full"
           >
             <div className="p-3 rounded-lg bg-primary/10 text-primary">
               <MapPin size={24} />
             </div>
-            <div className="text-left">
+            <div className="text-left flex-1">
               <p className="text-sm text-muted-foreground">Location</p>
               <p className="font-medium">Stockholm, Sweden</p>
             </div>
+            {weather && (
+              <div className="flex items-center gap-2 text-sm">
+                <CloudRain size={18} className="text-primary" />
+                <span className="font-medium">{weather.temp}°C</span>
+              </div>
+            )}
           </button>
           
-          <div className="flex items-center gap-4 glass rounded-xl p-4 w-full sm:w-auto">
+          <div className="flex items-center gap-4 glass rounded-xl p-4 w-full">
             <div className="p-3 rounded-lg bg-primary/10 text-primary">
               <Mail size={24} />
             </div>
