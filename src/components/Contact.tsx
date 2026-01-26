@@ -160,7 +160,30 @@ const Contact = () => {
             className="flex items-center justify-center"
           >
             <div className="glass rounded-2xl p-8 w-full h-full flex flex-col">
-              <div className="relative flex-1">
+              <div className="relative flex-1 rounded-xl overflow-hidden bg-gradient-to-b from-slate-900 via-purple-900/20 to-slate-900">
+                {/* Animated stars background */}
+                <div className="absolute inset-0">
+                  {[...Array(50)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white rounded-full"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                        opacity: Math.random() * 0.7 + 0.3,
+                      }}
+                      animate={{
+                        opacity: [Math.random() * 0.5 + 0.3, 1, Math.random() * 0.5 + 0.3],
+                        scale: [1, 1.5, 1],
+                      }}
+                      transition={{
+                        duration: Math.random() * 3 + 2,
+                        repeat: Infinity,
+                        delay: Math.random() * 2,
+                      }}
+                    />
+                  ))}
+                </div>
                 <ModelViewer
                   src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                   alt="3D Model Showcase"
@@ -169,7 +192,7 @@ const Contact = () => {
                   shadowIntensity="1"
                   disableZoom={false}
                   touchAction="pan-y"
-                  className="rounded-xl"
+                  className="rounded-xl relative z-10"
                 />
               </div>
             </div>
