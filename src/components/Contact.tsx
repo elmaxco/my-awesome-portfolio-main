@@ -119,11 +119,15 @@ const Contact = () => {
         >
           <button
             onClick={() => setMapOpen(true)}
-            className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full"
+            className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full group"
           >
-            <div className="p-3 rounded-lg bg-primary/10 text-primary">
+            <motion.div 
+              className="p-3 rounded-lg bg-primary/10 text-primary"
+              whileHover={{ scale: 1.1, rotate: [0, -10, 10, -10, 0] }}
+              transition={{ duration: 0.5 }}
+            >
               <MapPin size={24} />
-            </div>
+            </motion.div>
             <div className="text-left flex-1">
               <p className="text-sm text-muted-foreground">Location</p>
               <p className="font-medium">Stockholm, Sweden</p>
@@ -138,11 +142,15 @@ const Contact = () => {
           
           <a 
             href="mailto:max.jacobsson1999@hotmail.com"
-            className="flex items-center gap-4 glass rounded-xl p-4 w-full hover:bg-primary/5 transition-colors"
+            className="flex items-center gap-4 glass rounded-xl p-4 w-full hover:bg-primary/5 transition-colors group"
           >
-            <div className="p-3 rounded-lg bg-primary/10 text-primary">
+            <motion.div 
+              className="p-3 rounded-lg bg-primary/10 text-primary"
+              whileHover={{ scale: 1.1, rotate: [0, -10, 10, -10, 0] }}
+              transition={{ duration: 0.5 }}
+            >
               <Mail size={24} />
-            </div>
+            </motion.div>
             <div className="text-left">
               <p className="text-sm text-muted-foreground">Email</p>
               <p className="font-medium">max.jacobsson1999@hotmail.com</p>
