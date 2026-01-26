@@ -84,9 +84,17 @@
     @apply border-border;
   }
 
+  html {
+    overflow-y: scroll;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-display);
+    width: 100%;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
