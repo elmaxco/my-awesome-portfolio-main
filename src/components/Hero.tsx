@@ -62,17 +62,8 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated grid background */}
+      {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(hsl(174 72% 56%) 1px, transparent 1px), linear-gradient(90deg, hsl(174 72% 56%) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-          }}
-        />
-        
         {/* Animated gradient orbs */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]"
@@ -268,14 +259,14 @@ const Hero = () => {
       </div>
 
       {/* Animated Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-20 flex justify-center"
-        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-      >
-        <div className="relative flex items-center justify-center">
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20">
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          className="relative cursor-pointer"
+          onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+        >
           {/* Glow effect */}
           <motion.div
             animate={{ 
@@ -307,8 +298,8 @@ const Hero = () => {
               size={20} 
             />
           </motion.div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };

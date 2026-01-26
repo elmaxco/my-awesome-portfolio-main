@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Folder, Star, GitFork } from "lucide-react";
-import ModelViewer from "./ModelViewer";
 
 const projects = [
   {
@@ -72,41 +71,6 @@ const Projects = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             A selection of projects that showcase my skills and passion for development
           </p>
-        </motion.div>
-
-        {/* 3D Project Showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-24 max-w-5xl mx-auto"
-        >
-          <div className="grid md:grid-cols-2 gap-8 items-center glass rounded-2xl p-8">
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-gradient">Interactive 3D Showcase</h3>
-              <p className="text-muted-foreground">
-                Explore projects in an immersive 3D environment. Drag to rotate, scroll to zoom, and discover the depth of modern web development.
-              </p>
-              <div className="flex gap-2 flex-wrap">
-                <span className="px-3 py-1 text-xs font-mono bg-secondary rounded-full text-primary">3D Graphics</span>
-                <span className="px-3 py-1 text-xs font-mono bg-secondary rounded-full text-primary">WebGL</span>
-                <span className="px-3 py-1 text-xs font-mono bg-secondary rounded-full text-primary">Interactive</span>
-              </div>
-            </div>
-            <div className="relative h-[350px] md:h-[400px]">
-              <ModelViewer
-                src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-                alt="3D Project Showcase"
-                autoRotate={true}
-                cameraControls={true}
-                shadowIntensity="1"
-                disableZoom={true}
-                touchAction="pan-y"
-                className="rounded-xl"
-              />
-            </div>
-          </div>
         </motion.div>
 
         {/* Featured Projects */}

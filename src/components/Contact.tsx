@@ -1,10 +1,18 @@
 import { motion } from "framer-motion";
-import { MapPin, Send, CloudRain } from "lucide-react";
+import { MapPin, Send, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+import ModelViewer from "./ModelViewer";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -18,29 +26,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  const [weather, setWeather] = useState<{
-    temp: number;
-    description: string;
-    icon: string;
-  } | null>(null);
-
-  useEffect(() => {
-    // Fetch weather data for Stockholm
-    fetch('https://wttr.in/Stockholm?format=j1')
-      .then(res => res.json())
-      .then(data => {
-        const current = data.current_condition[0];
-        setWeather({
-          temp: Math.round(parseInt(current.temp_C)),
-          description: current.weatherDesc[0].value,
-          icon: current.weatherCode
-        });
-      })
-      .catch(() => {
-        // Fallback weather if API fails
-        setWeather({ temp: 5, description: "Cloudy", icon: "116" });
-      });
-  }, []);
+  const [mapOpen, setMapOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,50 +86,62 @@ const Contact = () => {
           </p>
         </motion.div>
 
+        {/* Contact Info Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 max-w-3xl mx-auto"
+        >
+          <button
+            onClick={() => setMapOpen(true)}
+            className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full sm:w-auto"
+          >
+            <div className="p-3 rounded-lg bg-primary/10 text-primary">
+              <MapPin size={24} />
+            </div>
+            <div className="text-left">
+              <p className="text-sm text-muted-foreground">Location</p>
+              <p className="font-medium">Stockholm, Sweden</p>
+            </div>
+          </button>
+          
+          <div className="flex items-center gap-4 glass rounded-xl p-4 w-full sm:w-auto">
+            <div className="p-3 rounded-lg bg-primary/10 text-primary">
+              <Mail size={24} />
+            </div>
+            <div className="text-left">
+              <p className="text-sm text-muted-foreground">Email</p>
+              <a href="mailto:max.jacobsson1999@hotmail.com" className="font-medium hover:text-primary transition-colors">
+                max.jacobsson1999@hotmail.com
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Info */}
+          {/* 3D Model */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="flex items-center justify-center"
           >
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                  <MapPin size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="font-medium">Stockholm, Sweden</p>
-                </div>
+            <div className="glass rounded-2xl p-8 w-full h-full flex flex-col">
+              <div className="relative flex-1">
+                <ModelViewer
+                  src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                  alt="3D Model Showcase"
+                  autoRotate={true}
+                  cameraControls={true}
+                  shadowIntensity="1"
+                  disableZoom={false}
+                  touchAction="pan-y"
+                  className="rounded-xl"
+                />
               </div>
-              
-              {weather && (
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                    <CloudRain size={24} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Weather</p>
-                    <p className="font-medium">{weather.temp}°C • {weather.description}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="rounded-2xl overflow-hidden h-[300px] border border-border">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d129622.17159954537!2d17.9216940794673!3d59.32623618964673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f763119640bcb%3A0xa80d27d3679d7766!2sStockholm%2C%20Sweden!5e0!3m2!1sen!2s!4v1705860000000!5m2!1sen!2s"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Stockholm, Sweden"
-              />
             </div>
           </motion.div>
 
@@ -216,6 +214,30 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Map Modal */}
+      <Dialog open={mapOpen} onOpenChange={setMapOpen}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle>Stockholm, Sweden</DialogTitle>
+            <DialogDescription>
+              My current location
+            </DialogDescription>
+          </DialogHeader>
+          <div className="rounded-xl overflow-hidden h-[500px] border border-border">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d129622.17159954537!2d17.9216940794673!3d59.32623618964673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f763119640bcb%3A0xa80d27d3679d7766!2sStockholm%2C%20Sweden!5e0!3m2!1sen!2s!4v1705860000000!5m2!1sen!2s"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Stockholm, Sweden"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
