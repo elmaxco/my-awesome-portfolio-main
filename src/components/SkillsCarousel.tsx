@@ -16,6 +16,7 @@ const skills = [
   { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
   { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
   { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+  { name: "Bootstrap", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
   { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
   { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
   { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
@@ -25,10 +26,9 @@ const skills = [
 ];
 
 const experienceStats = [
-  { value: "3+", label: "Years Experience" },
-  { value: "50+", label: "Projects Completed" },
+  { value: "2", label: "Years Experience" },
+  { value: "20+", label: "Projects Completed" },
   { value: "20+", label: "Technologies" },
-  { value: "100%", label: "Client Satisfaction" },
 ];
 
 const SkillsCarousel = () => {
@@ -142,7 +142,7 @@ const SkillsCarousel = () => {
         transition={{ duration: 0.6 }}
         className="container px-6 mt-20"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {experienceStats.map((stat, index) => (
             <motion.div
               key={stat.label}
