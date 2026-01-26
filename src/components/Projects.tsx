@@ -38,11 +38,11 @@ const projects = [
     featured: true,
   },
   {
-    title: "API Gateway Service",
+    title: "CarWebApi",
     description:
-      "Microservices API gateway handling authentication, rate limiting, and request routing for distributed systems.",
-    technologies: ["C#", ".NET Core", "Redis", "Docker"],
-    github: "https://github.com",
+      "ASP.NET Core Web API project.",
+    technologies: ["C#", ".NET Core", "ASP.NET Core", "Web API"],
+    github: "https://github.com/elmaxco/CarWebApi",
     featured: true,
   },
 ];
