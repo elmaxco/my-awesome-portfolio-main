@@ -30,12 +30,11 @@ const projects = [
     featured: true,
   },
   {
-    title: "Task Management App",
+    title: "Old Portfolio Website",
     description:
-      "Collaborative project management tool with real-time updates, file sharing, and team communication features.",
-    technologies: ["TypeScript", "React", "PostgreSQL", "WebSocket"],
-    github: "https://github.com",
-    live: "https://example.com",
+      "Personal portfolio website showcasing my projects and skills. Built with modern web technologies and responsive design.",
+    technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    github: "https://github.com/elmaxco/project_portfolio",
     featured: true,
   },
   {
@@ -90,12 +89,12 @@ const Projects = () => {
                 className={`relative group ${index % 2 === 1 ? "md:order-2" : ""}`}
               >
                 <div className="bg-gradient-card rounded-2xl p-1 glow-primary">
-                  <div className="bg-secondary rounded-xl aspect-video flex items-center justify-center overflow-hidden">
+                  <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl aspect-video flex items-center justify-center overflow-hidden">
                     {project.image ? (
                       <img 
                         src={project.image} 
                         alt={project.title}
-                        className={`${project.title.includes('Ventixe') ? 'w-3/4 h-3/4 object-contain' : 'w-full h-full object-cover'}`}
+                        className="w-full h-full object-cover"
                       />
                     ) : (
                       <div className="text-6xl opacity-20">
