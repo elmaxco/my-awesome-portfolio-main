@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 const Hero = () => {
   const [text, setText] = useState("");
   const fullText = "Max Jacobsson";
+  const [nameTypingComplete, setNameTypingComplete] = useState(false);
   
   const [roleText, setRoleText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
@@ -26,6 +27,7 @@ const Hero = () => {
         index++;
       } else {
         clearInterval(timer);
+        setNameTypingComplete(true);
       }
     }, 100);
 
@@ -211,11 +213,13 @@ const Hero = () => {
           >
             <span className="text-gradient">
               {text}
-              <motion.span
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="inline-block w-1 h-[0.9em] bg-primary ml-1 align-middle"
-              />
+              {!nameTypingComplete && (
+                <motion.span
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="inline-block w-1 h-[0.9em] bg-primary ml-1 align-middle"
+                />
+              )}
             </span>
           </motion.h1>
 
