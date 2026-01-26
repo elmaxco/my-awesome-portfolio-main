@@ -39,7 +39,7 @@ const Navigation = () => {
           isScrolled ? "glass py-4" : "py-6"
         }`}
       >
-        <div className="container px-6 flex items-center justify-between">
+        <div className="w-full mx-auto max-w-7xl flex items-center justify-between">
           <a
             href="#"
             className="text-2xl font-bold text-gradient"

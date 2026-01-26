@@ -1,9 +1,9 @@
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
     <footer className="py-12 border-t border-border">
-      <div className="container px-6">
+      <div className="w-full mx-auto max-w-7xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="text-muted-foreground text-sm">
@@ -15,6 +15,12 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-6">
+            <a
+              href="mailto:max.jacobsson1999@hotmail.com"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Mail size={20} />
+            </a>
             <a
               href="https://github.com/elmaxco"
               target="_blank"
