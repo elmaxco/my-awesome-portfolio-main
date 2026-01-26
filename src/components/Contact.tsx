@@ -159,13 +159,13 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="flex items-center justify-center"
           >
-            <div className="glass rounded-2xl p-8 w-full h-full flex flex-col">
-              <div className="relative flex-1 rounded-xl overflow-hidden bg-gradient-to-b from-slate-900 via-purple-900/20 to-slate-900">
+            <div className="glass rounded-2xl overflow-hidden w-full h-full flex flex-col">
+              <div className="relative flex-1 bg-gradient-to-b from-slate-950 via-slate-900 to-black">
                 {/* Animated stars background */}
                 <div className="absolute inset-0">
-                  {[...Array(50)].map((_, i) => (
+                  {[...Array(80)].map((_, i) => (
                     <motion.div
-                      key={i}
+                      key={`star-${i}`}
                       className="absolute w-1 h-1 bg-white rounded-full"
                       style={{
                         left: `${Math.random() * 100}%`,
