@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Folder, Star, GitFork } from "lucide-react";
+import { ExternalLink, Github, Folder, Star } from "lucide-react";
 
 const projects = [
   {
@@ -198,44 +198,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* GitHub Activity */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 text-center"
-        >
-          <div className="glass rounded-2xl p-8 max-w-2xl mx-auto">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <Github className="text-primary" size={32} />
-              <h3 className="text-xl font-bold">Open Source Contributions</h3>
-            </div>
-            <p className="text-muted-foreground mb-6">
-              I actively contribute to open source projects and share my work with the community.
-              Check out my GitHub for more projects and contributions.
-            </p>
-            <div className="flex items-center justify-center gap-8 mb-6">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Star size={18} className="text-primary" />
-                <span className="font-mono">120+ Stars</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <GitFork size={18} className="text-primary" />
-                <span className="font-mono">45+ Forks</span>
-              </div>
-            </div>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium"
-            >
-              <Github size={20} />
-              View GitHub Profile
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
