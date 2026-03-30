@@ -64,33 +64,126 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Hero-only accents (page background is shared in Index) */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Animated gradient orbs */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px]"
+          animate={{
+            x: [0, -80, 0],
+            y: [0, -60, 0],
+            scale: [1, 1.3, 1],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]"
+          animate={{
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+            scale: [1.2, 1, 1.2],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Floating particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-primary/40 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 1, 0.2],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        {/* Animated code brackets */}
         <motion.div
           className="absolute top-[20%] left-[10%] text-primary/20 text-8xl font-mono font-bold"
-          animate={{ opacity: [0.1, 0.3, 0.1], y: [0, -20, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          animate={{
+            opacity: [0.1, 0.3, 0.1],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
           {"<"}
         </motion.div>
         <motion.div
           className="absolute bottom-[25%] right-[10%] text-accent/20 text-8xl font-mono font-bold"
-          animate={{ opacity: [0.1, 0.3, 0.1], y: [0, 20, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          animate={{
+            opacity: [0.1, 0.3, 0.1],
+            y: [0, 20, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
         >
           {"/>"}
         </motion.div>
         <motion.div
           className="absolute top-[40%] right-[15%] text-primary/15 text-6xl font-mono"
-          animate={{ opacity: [0.1, 0.2, 0.1], rotate: [0, 10, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          animate={{
+            opacity: [0.1, 0.2, 0.1],
+            rotate: [0, 10, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
           {"{ }"}
         </motion.div>
         <motion.div
           className="absolute bottom-[35%] left-[12%] text-accent/15 text-5xl font-mono"
-          animate={{ opacity: [0.1, 0.25, 0.1], x: [0, 15, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          animate={{
+            opacity: [0.1, 0.25, 0.1],
+            x: [0, 15, 0],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
           {"=>"}
         </motion.div>
