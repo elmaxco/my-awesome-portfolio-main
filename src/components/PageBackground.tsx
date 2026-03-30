@@ -42,6 +42,34 @@ const PageBackground = () => {
     });
   }, []);
 
+  const lowerSectionStars = useMemo<Particle[]>(() => {
+    const seed = 4242;
+    let s = seed;
+    const rand = () => {
+      s = (s * 1664525 + 1013904223) % 4294967296;
+      return s / 4294967296;
+    };
+
+    return Array.from({ length: 70 }, () => {
+      const r1 = rand();
+      const r2 = rand();
+      const r3 = rand();
+      const r4 = rand();
+
+      const sizeClass = r1 > 0.75 ? "w-1.5 h-1.5" : "w-1 h-1";
+      const opacityClass = r2 > 0.5 ? "bg-primary/45" : "bg-accent/30";
+
+      return {
+        left: `${Math.round(rand() * 100)}%`,
+        top: `${Math.round(rand() * 100)}%`,
+        duration: 2.8 + r3 * 4.2,
+        delay: r4 * 2.2,
+        sizeClass,
+        opacityClass,
+      };
+    });
+  }, []);
+
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       {/* Gradient orbs */}
@@ -76,6 +104,24 @@ const PageBackground = () => {
           }}
         />
       ))}
+
+      {/* Extra stars only below hero section */}
+      <div className="absolute inset-x-0 top-[100vh] bottom-0">
+        {lowerSectionStars.map((star, i) => (
+          <motion.div
+            key={`lower-star-${i}`}
+            className={`absolute rounded-full ${star.sizeClass} ${star.opacityClass}`}
+            style={{ left: star.left, top: star.top }}
+            animate={{ y: [0, -24, 0], opacity: [0.2, 1, 0.2] }}
+            transition={{
+              duration: star.duration,
+              repeat: Infinity,
+              delay: star.delay,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };
