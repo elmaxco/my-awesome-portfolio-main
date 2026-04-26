@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Folder, Star } from "lucide-react";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  shortDescription?: string;
+  technologies: string[];
+  github: string;
+  image?: string;
+  featured: boolean;
+  live?: string;
+};
+
+const projects: Project[] = [
   {
     title: "Ventixe - Event Planning Platform",
     description:
@@ -27,6 +38,17 @@ const projects = [
     technologies: ["ASP.NET Core", "C#", "SignalR", "Azure Blob Storage", "Entity Framework Core", "Identity", "SQL Server"],
     github: "https://github.com/elmaxco/AlphaAdminPortal",
     image: "https://cdn.sanity.io/images/rmpdth2p/production/c1d1d87d43debb3cc23fe2327f63c1b1b7f2fc45-44x41.svg",
+    featured: true,
+  },
+  {
+    title: "SignPortal - E-signing Platform",
+    description:
+      "Modern e-signing platform for Swedish teams where users can create, send, and sign agreements with BankID. Includes a public quote flow without login and an admin interface for managing agreements, recipients, and deliveries. Built with Firebase/Firestore, private Storage attachments with time-limited download links, and deployed on Vercel with scheduled reminder cron jobs. Communication is handled through Resend email and Twilio SMS with explicit consent, plus server-side anti-spam and structured signing audit trails.",
+    shortDescription:
+      "E-signeringsplattform med BankID, publikt offertflode, adminpanel och starkt fokus pa sakerhet, samtycke och audit trail.",
+    technologies: ["React", "Firebase", "Firestore", "Firebase Storage", "Vercel", "Resend", "Twilio", "BankID"],
+    github: "https://github.com/elmaxco",
+    image: "/signportal.png",
     featured: true,
   },
   {
@@ -109,7 +131,14 @@ const Projects = () => {
                 <p className="text-primary font-mono text-sm mb-2">Featured Project</p>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">{project.title}</h3>
                 <div className="glass rounded-xl p-6 mb-4">
-                  <p className="text-muted-foreground">{project.description}</p>
+                  {project.shortDescription ? (
+                    <>
+                      <p className="text-muted-foreground md:hidden">{project.shortDescription}</p>
+                      <p className="text-muted-foreground hidden md:block">{project.description}</p>
+                    </>
+                  ) : (
+                    <p className="text-muted-foreground">{project.description}</p>
+                  )}
                 </div>
                 <div
                   className={`flex flex-wrap gap-2 mb-4 ${
