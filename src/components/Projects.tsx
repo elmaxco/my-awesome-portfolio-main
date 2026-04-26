@@ -48,7 +48,7 @@ const projects: Project[] = [
       "E-signeringsplattform med BankID, publikt offertflode, adminpanel och starkt fokus pa sakerhet, samtycke och audit trail.",
     technologies: ["React", "Firebase", "Firestore", "Firebase Storage", "Vercel", "Resend", "Twilio", "BankID"],
     github: "https://github.com/elmaxco",
-    image: "/signportal.png",
+    image: "/Signportalv2.png",
     featured: true,
   },
   {
