@@ -1,136 +1,105 @@
-# My Awesome Portfolio
+# Portfolio Website
 
-A modern, responsive portfolio website showcasing projects and skills. Built with cutting-edge web technologies for optimal performance and user experience.
+Professional portfolio website built with React, TypeScript, and Vite. The project presents selected work, technical skills, and contact information in a responsive and performance-focused interface.
 
-## 🚀 Features
+## Overview
 
-- **Responsive Design** - Looks great on all devices (mobile, tablet, desktop)
-- **Modern UI** - Built with shadcn/ui components for a polished interface
-- **Fast Performance** - Lightning-fast development and production builds with Vite
-- **Type Safe** - Full TypeScript support for reliability
-- **Accessibility** - Designed with accessibility best practices in mind
-- **Smooth Animations** - Enhanced user experience with carefully crafted transitions
+The site is designed for clear project presentation across desktop and mobile devices. It includes animated sections, reusable UI components, and a maintainable code structure for ongoing updates.
 
-## 🛠️ Tech Stack
+## Core Features
 
-- **[Vite](https://vitejs.dev/)** - Next generation frontend tooling
-- **[React](https://react.dev/)** - UI library for building interactive components
-- **[TypeScript](https://www.typescriptlang.org/)** - JavaScript with static typing
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[shadcn/ui](https://ui.shadcn.com/)** - High-quality, reusable components
-- **[Vitest](https://vitest.dev/)** - Unit testing framework
+- Responsive layout for mobile, tablet, and desktop
+- Project showcase with visual previews and technology tags
+- Reusable UI system based on shadcn/ui components
+- Type-safe codebase with TypeScript
+- Smooth transitions and motion using Framer Motion
+- Test setup with Vitest
 
-## 📋 Prerequisites
+## Tech Stack
 
-- Node.js (v16 or higher)
-- npm or bun package manager
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Vitest](https://vitest.dev/)
 
-## 🏃 Getting Started
+## Requirements
 
-### Installation
+- Node.js 16+
+- npm or Bun
+
+## Getting Started
 
 ```sh
-# Clone the repository
 git clone <YOUR_GIT_URL>
-
-# Navigate to the project directory
 cd my-awesome-portfolio
-
-# Install dependencies
 npm install
-# or
+```
+
+To use Bun instead:
+
+```sh
 bun install
 ```
 
-### Development
+Start development server:
 
 ```sh
-# Start the development server
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+Default local URL: http://localhost:5173
 
-### Building
+## Build and Preview
 
 ```sh
-# Build for production
 npm run build
-
-# Preview production build
 npm run preview
 ```
 
-## 📝 Available Scripts
+## Scripts
 
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Create an optimized production build
-- `npm run build:dev` - Build for development mode
+- `npm run dev` - Start local development server
+- `npm run build` - Build production bundle
+- `npm run build:dev` - Build in development mode
 - `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint to check code quality
-- `npm run test` - Run unit tests
+- `npm run lint` - Run ESLint checks
+- `npm run test` - Run tests once
 - `npm run test:watch` - Run tests in watch mode
 
-## 📁 Project Structure
+## Project Structure
 
-```
+```text
 src/
-├── components/          # Reusable React components
-│   ├── ui/             # shadcn/ui components
-│   ├── About.tsx       # About section
-│   ├── Contact.tsx     # Contact section
-│   ├── Hero.tsx        # Hero section
-│   ├── Projects.tsx    # Projects showcase
-│   └── ...
-├── pages/              # Page components
-├── hooks/              # Custom React hooks
-├── lib/                # Utility functions
-└── index.css           # Global styles
+	components/      Reusable React components
+	components/ui/   shadcn/ui components
+	pages/           Route-level pages
+	hooks/           Custom hooks
+	lib/             Shared utilities
+	index.css        Global styles
 ```
 
-## 🎨 Customization
+## Content Updates
 
-### Colors & Styling
+- Update section content in files under `src/components/`
+- Update global styling in `src/index.css`
+- Update Tailwind configuration in `tailwind.config.ts`
 
-Customize the appearance by editing:
-- `tailwind.config.ts` - Tailwind CSS configuration
-- `postcss.config.js` - PostCSS configuration
-- `src/index.css` - Global styles
+## Deployment
 
-### Content
-
-Update portfolio content by modifying the component files in `src/components/`
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
+Recommended workflow:
 
 ```sh
 npm run build
-# Deploy the dist/ folder to Vercel
 ```
 
-### Other Platforms
+Deploy the generated `dist/` directory to your hosting provider (for example Vercel, Netlify, or static hosting).
 
-- **Netlify** - Connect your GitHub repo and set build command to `npm run build`
-- **GitHub Pages** - Configure Vite for static site generation
-- **Traditional Hosting** - Upload the `dist/` folder to your web server
+## License
 
-## 📚 Learn More
+MIT
 
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [React Documentation](https://react.dev/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [shadcn/ui Documentation](https://ui.shadcn.com/)
+## Author
 
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to fork this project and submit pull requests.
-
----
-
-**Built by Max Jacobsson**
+Max Jacobsson
