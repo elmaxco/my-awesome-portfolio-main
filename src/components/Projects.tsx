@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Folder, Star, GitFork } from "lucide-react";
+import { ExternalLink, Github, Folder, Star } from "lucide-react";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  shortDescription?: string;
+  technologies: string[];
+  github: string;
+  image?: string;
+  featured: boolean;
+  live?: string;
+};
+
+const projects: Project[] = [
   {
     title: "Ventixe - Event Planning Platform",
     description:
@@ -30,19 +41,22 @@ const projects = [
     featured: true,
   },
   {
+    title: "SignPortal - E-signing Platform",
+    description:
+      "Modern e-signing platform for Swedish teams where users can create, send, and sign agreements with BankID. Includes a public quote flow without login and an admin interface for managing agreements, recipients, and deliveries. Built with Firebase/Firestore, private Storage attachments with time-limited download links, and deployed on Vercel with scheduled reminder cron jobs. Communication is handled through Resend email and Twilio SMS with explicit consent, plus server-side anti-spam and structured signing audit trails.",
+    shortDescription:
+      "E-signeringsplattform med BankID, publikt offertflode, adminpanel och starkt fokus pa sakerhet, samtycke och audit trail.",
+    technologies: ["React", "Firebase", "Firestore", "Firebase Storage", "Vercel", "Resend", "Twilio", "BankID"],
+    github: "https://github.com/elmaxco",
+    image: "/Signportalv2.png",
+    featured: true,
+  },
+  {
     title: "Old Portfolio Website",
     description:
       "Personal portfolio website showcasing my projects and skills. Built with modern web technologies and responsive design.",
     technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     github: "https://github.com/elmaxco/project_portfolio",
-    featured: true,
-  },
-  {
-    title: "CarWebApi",
-    description:
-      "ASP.NET Core Web API project.",
-    technologies: ["C#", ".NET Core", "ASP.NET Core", "Web API"],
-    github: "https://github.com/elmaxco/CarWebApi",
     featured: true,
   },
 ];
@@ -109,7 +123,14 @@ const Projects = () => {
                 <p className="text-primary font-mono text-sm mb-2">Featured Project</p>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">{project.title}</h3>
                 <div className="glass rounded-xl p-6 mb-4">
-                  <p className="text-muted-foreground">{project.description}</p>
+                  {project.shortDescription ? (
+                    <>
+                      <p className="text-muted-foreground md:hidden">{project.shortDescription}</p>
+                      <p className="text-muted-foreground hidden md:block">{project.description}</p>
+                    </>
+                  ) : (
+                    <p className="text-muted-foreground">{project.description}</p>
+                  )}
                 </div>
                 <div
                   className={`flex flex-wrap gap-2 mb-4 ${
@@ -198,44 +219,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* GitHub Activity */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 text-center"
-        >
-          <div className="glass rounded-2xl p-8 max-w-2xl mx-auto">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <Github className="text-primary" size={32} />
-              <h3 className="text-xl font-bold">Open Source Contributions</h3>
-            </div>
-            <p className="text-muted-foreground mb-6">
-              I actively contribute to open source projects and share my work with the community.
-              Check out my GitHub for more projects and contributions.
-            </p>
-            <div className="flex items-center justify-center gap-8 mb-6">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Star size={18} className="text-primary" />
-                <span className="font-mono">120+ Stars</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <GitFork size={18} className="text-primary" />
-                <span className="font-mono">45+ Forks</span>
-              </div>
-            </div>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium"
-            >
-              <Github size={20} />
-              View GitHub Profile
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

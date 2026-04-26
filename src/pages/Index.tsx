@@ -5,17 +5,23 @@ import SkillsCarousel from "@/components/SkillsCarousel";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import PageBackground from "@/components/PageBackground";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <Hero />
-      <About />
-      <SkillsCarousel />
-      <Projects />
-      <Contact />
-      <Footer />
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      <PageBackground />
+      <ScrollToTopButton />
+      <div className="relative z-10">
+        <Navigation />
+        <Hero />
+        <About />
+        <SkillsCarousel />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 };
