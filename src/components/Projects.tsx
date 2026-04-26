@@ -59,14 +59,6 @@ const projects: Project[] = [
     github: "https://github.com/elmaxco/project_portfolio",
     featured: true,
   },
-  {
-    title: "CarWebApi",
-    description:
-      "ASP.NET Core Web API project.",
-    technologies: ["C#", ".NET Core", "ASP.NET Core", "Web API"],
-    github: "https://github.com/elmaxco/CarWebApi",
-    featured: true,
-  },
 ];
 
 const techStack = [
