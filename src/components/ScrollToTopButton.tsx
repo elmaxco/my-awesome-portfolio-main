@@ -64,7 +64,7 @@ const ScrollToTopButton = () => {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {nextSectionId && (
+        {isVisible && nextSectionId && (
           <motion.button
             aria-label="Scroll to next section"
             initial={{ opacity: 0, y: -10, scale: 0.9 }}
