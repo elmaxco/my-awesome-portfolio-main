@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
@@ -11,6 +11,7 @@ const Hero = () => {
   const [roleText, setRoleText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   
   const roles = [
     ".NET Developer",
@@ -61,6 +62,16 @@ const Hero = () => {
 
     return () => clearTimeout(timeout);
   }, [roleText, isDeleting, roleIndex]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowScrollIndicator(window.scrollY === 0);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -263,47 +274,54 @@ const Hero = () => {
       </div>
 
       {/* Animated Scroll Indicator */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20">
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="relative cursor-pointer"
-          onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-        >
-          {/* Glow effect */}
+      <AnimatePresence>
+        {showScrollIndicator && (
           <motion.div
-            animate={{ 
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-primary/30 blur-xl"
-          />
-          
-          {/* Inner circle with arrow */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            animate={{ y: [0, 8, 0] }}
-            transition={{ 
-              y: {
-                duration: 1.5, 
-                repeat: Infinity, 
-                ease: "easeInOut"
-              }
-            }}
-            className="relative w-12 h-12 rounded-full glass border-2 border-primary/50 flex items-center justify-center group hover:border-primary transition-all shadow-[0_0_20px_rgba(45,212,191,0.3)]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute bottom-8 left-0 right-0 flex justify-center z-20"
           >
-            <ArrowDown 
-              className="text-primary" 
-              size={20} 
-            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1 }}
+              className="relative cursor-pointer"
+              onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              {/* Glow effect */}
+              <motion.div
+                animate={{
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-primary/30 blur-xl"
+              />
+
+              {/* Inner circle with arrow */}
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                animate={{ y: [0, 8, 0] }}
+                transition={{
+                  y: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
+                }}
+                className="relative w-12 h-12 rounded-full glass border-2 border-primary/50 flex items-center justify-center group hover:border-primary transition-all shadow-[0_0_20px_rgba(45,212,191,0.3)]"
+              >
+                <ArrowDown className="text-primary" size={20} />
+              </motion.div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
