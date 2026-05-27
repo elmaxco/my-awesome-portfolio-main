@@ -68,7 +68,7 @@ const projects: Project[] = [
     backendGithub: "https://github.com/ninohaegglund/ECommerce-platform",
     backendGithubLabel: "Backend",
     live: "https://spelvalvet.shop/",
-    image: "https://spelvalvet.shop/shop-icons/N64-Retro-Gaming-Console.webp",
+    image: "/images/spelvalvet-preview.png",
     featured: true,
   },
 ];
