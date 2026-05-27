@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail } from "lucide-react";
+import { profileLinks } from "@/lib/profileLinks";
 
 const Footer = () => {
   return (
@@ -16,13 +17,13 @@ const Footer = () => {
 
           <div className="flex items-center gap-6">
             <a
-              href="mailto:max.jacobsson1999@hotmail.com"
+              href={profileLinks.email}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
               <Mail size={20} />
             </a>
             <a
-              href="https://github.com/elmaxco"
+              href={profileLinks.github}
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -30,7 +31,7 @@ const Footer = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://www.linkedin.com/in/maxjacobsson"
+              href={profileLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
