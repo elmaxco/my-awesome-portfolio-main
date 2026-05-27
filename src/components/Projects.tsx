@@ -194,6 +194,8 @@ const Projects = () => {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit ${project.title}`}
+                      title="Visit site"
                       className="inline-flex items-center gap-2 rounded-lg bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
                     >
                       <ExternalLink size={18} />
