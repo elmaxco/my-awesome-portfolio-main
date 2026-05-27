@@ -8,6 +8,9 @@ type Project = {
   shortDescription?: string;
   technologies: string[];
   github: string;
+  githubLabel?: string;
+  backendGithub?: string;
+  backendGithubLabel?: string;
   image?: string;
   featured: boolean;
   live?: string;
@@ -54,11 +57,18 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Old Portfolio Website",
+    title: "Spelvalvet - E-commerce Platform",
     description:
-      "Personal portfolio website showcasing my projects and skills. Built with modern web technologies and responsive design.",
-    technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-    github: "https://github.com/elmaxco/project_portfolio",
+      "Full-stack e-commerce platform for Spelvalvet, a Swedish shop for Pokemon cards, games, consoles, and refurbished finds. Built with a React/TypeScript storefront and ASP.NET Core microservices for catalog, identity, orders, payments, inventory, and notifications, including Stripe payments, JWT authentication, SQL Server, and Resend email flows.",
+    shortDescription:
+      "Full-stack e-commerce shop for trading cards, games, and consoles with React, ASP.NET Core microservices, Stripe payments, and email notifications.",
+    technologies: ["React", "TypeScript", "Vite", "ASP.NET Core", "C#", "SQL Server", "Stripe", "Resend"],
+    github: "https://github.com/ninohaegglund/ECommerce-platform-client",
+    githubLabel: "Frontend",
+    backendGithub: "https://github.com/ninohaegglund/ECommerce-platform",
+    backendGithubLabel: "Backend",
+    live: "https://spelvalvet.shop/",
+    image: "https://spelvalvet.shop/shop-icons/N64-Retro-Gaming-Console.webp",
     featured: true,
   },
 ];
@@ -155,10 +165,30 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    aria-label={`${project.title} ${project.githubLabel ?? "GitHub"}`}
+                    title={project.githubLabel ?? "GitHub"}
+                    className={`transition-colors ${
+                      project.backendGithub
+                        ? "inline-flex items-center gap-2 rounded-lg bg-secondary/50 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary"
+                        : "text-muted-foreground hover:text-primary"
+                    }`}
                   >
-                    <Github size={22} />
+                    <Github size={project.backendGithub ? 18 : 22} />
+                    {project.backendGithub && <span>{project.githubLabel ?? "GitHub"}</span>}
                   </a>
+                  {project.backendGithub && (
+                    <a
+                      href={project.backendGithub}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} ${project.backendGithubLabel ?? "Backend GitHub"}`}
+                      title={project.backendGithubLabel ?? "Backend GitHub"}
+                      className="inline-flex items-center gap-2 rounded-lg bg-secondary/50 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Github size={18} />
+                      <span>{project.backendGithubLabel ?? "Backend"}</span>
+                    </a>
+                  )}
                   {project.live && (
                     <a
                       href={project.live}

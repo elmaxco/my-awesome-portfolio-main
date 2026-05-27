@@ -3,7 +3,7 @@ import { MapPin, Send, Mail, CloudRain } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 import ModelViewer from "./ModelViewer";
 import {
@@ -32,6 +32,20 @@ const Contact = () => {
     description: string;
     icon: string;
   } | null>(null);
+
+  const stars = useMemo(
+    () =>
+      [...Array(80)].map((_, index) => ({
+        id: `star-${index}`,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        baseOpacity: Math.random() * 0.7 + 0.3,
+        twinkleOpacity: Math.random() * 0.5 + 0.3,
+        duration: Math.random() * 3 + 2,
+        delay: Math.random() * 2,
+      })),
+    []
+  );
 
   useEffect(() => {
     // Fetch weather data for Stockholm
@@ -171,23 +185,23 @@ const Contact = () => {
               <div className="relative flex-1 bg-gradient-to-b from-slate-950 via-slate-900 to-black">
                 {/* Animated stars background */}
                 <div className="absolute inset-0">
-                  {[...Array(80)].map((_, i) => (
+                  {stars.map((star) => (
                     <motion.div
-                      key={`star-${i}`}
+                      key={star.id}
                       className="absolute w-1 h-1 bg-white rounded-full"
                       style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        opacity: Math.random() * 0.7 + 0.3,
+                        left: `${star.left}%`,
+                        top: `${star.top}%`,
+                        opacity: star.baseOpacity,
                       }}
                       animate={{
-                        opacity: [Math.random() * 0.5 + 0.3, 1, Math.random() * 0.5 + 0.3],
+                        opacity: [star.twinkleOpacity, 1, star.twinkleOpacity],
                         scale: [1, 1.5, 1],
                       }}
                       transition={{
-                        duration: Math.random() * 3 + 2,
+                        duration: star.duration,
                         repeat: Infinity,
-                        delay: Math.random() * 2,
+                        delay: star.delay,
                       }}
                     />
                   ))}
@@ -214,7 +228,7 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
           >
             <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 space-y-6">
-              <div>
+              <div className="relative">
                 <Input
                   placeholder="Your Name"
                   value={formData.name}
@@ -227,10 +241,12 @@ const Contact = () => {
                   }`}
                 />
                 {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                  <p className="absolute left-0 top-full mt-1 text-red-500 text-xs leading-3">
+                    {errors.name}
+                  </p>
                 )}
               </div>
-              <div>
+              <div className="relative">
                 <Input
                   type="email"
                   placeholder="Your Email"
@@ -244,10 +260,12 @@ const Contact = () => {
                   }`}
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                  <p className="absolute left-0 top-full mt-1 text-red-500 text-xs leading-3">
+                    {errors.email}
+                  </p>
                 )}
               </div>
-              <div>
+              <div className="relative">
                 <Textarea
                   placeholder="Your Message"
                   rows={5}
@@ -261,7 +279,9 @@ const Contact = () => {
                   }`}
                 />
                 {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                  <p className="absolute left-0 top-full mt-1 text-red-500 text-xs leading-3">
+                    {errors.message}
+                  </p>
                 )}
               </div>
               <button
