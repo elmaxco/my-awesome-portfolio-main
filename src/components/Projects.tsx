@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Folder, Star } from "lucide-react";
+import { profileLinks } from "@/lib/profileLinks";
 
 type Project = {
   title: string;
@@ -172,6 +173,38 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="glass rounded-xl p-6 md:p-8 mb-24 max-w-3xl mx-auto border border-primary/20"
+        >
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-primary/10 text-primary">
+                <Github size={24} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">More projects on GitHub</h3>
+                <p className="text-muted-foreground">
+                  The featured work above is just a selection. Explore the rest of my
+                  repositories, experiments, and learning projects on GitHub.
+                </p>
+              </div>
+            </div>
+            <a
+              href={profileLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-primary/10 px-5 py-3 font-medium text-primary hover:bg-primary/20 transition-colors"
+            >
+              <Github size={18} />
+              View GitHub
+            </a>
+          </div>
+        </motion.div>
 
         {/* Tech Stack Overview */}
         <motion.div
