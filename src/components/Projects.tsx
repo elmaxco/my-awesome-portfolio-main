@@ -49,6 +49,7 @@ const projects: Project[] = [
       "E-signeringsplattform med BankID, publikt offertflode, adminpanel och starkt fokus pa sakerhet, samtycke och audit trail.",
     technologies: ["React", "Firebase", "Firestore", "Firebase Storage", "Vercel", "Resend", "Twilio", "BankID"],
     github: "https://github.com/elmaxco",
+    live: "https://sign-portal-swart.vercel.app/",
     image: "/Signportalv2.png",
     featured: true,
   },
@@ -148,7 +149,7 @@ const Projects = () => {
                   ))}
                 </div>
                 <div
-                  className={`flex gap-4 ${index % 2 === 1 ? "md:justify-end" : ""}`}
+                  className={`flex flex-wrap items-center gap-4 ${index % 2 === 1 ? "md:justify-end" : ""}`}
                 >
                   <a
                     href={project.github}
@@ -163,9 +164,10 @@ const Projects = () => {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="inline-flex items-center gap-2 rounded-lg bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
                     >
-                      <ExternalLink size={22} />
+                      <ExternalLink size={18} />
+                      Visit site
                     </a>
                   )}
                 </div>
