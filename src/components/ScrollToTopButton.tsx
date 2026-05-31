@@ -5,7 +5,7 @@ import { ArrowDown, ArrowUp } from "lucide-react";
 const SCROLL_THRESHOLD = 120;
 const VISIBILITY_DELAY = 150;
 const BOTTOM_THRESHOLD = 12;
-const SECTION_IDS = ["about", "skills", "projects", "contact"];
+const SECTION_IDS = ["about", "currently", "skills", "projects", "contact"];
 
 const getNextSectionId = () => {
   const currentScroll = window.scrollY + 1;
@@ -74,10 +74,15 @@ const ScrollToTopButton = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[60] flex flex-col items-center gap-3">
+    <motion.div
+      layout
+      transition={{ layout: { type: "spring", stiffness: 280, damping: 24 } }}
+      className="fixed bottom-6 right-6 z-[60] flex flex-col items-center gap-3"
+    >
       <AnimatePresence>
         {isVisible && (
           <motion.button
+            layout="position"
             aria-label="Scroll to top"
             initial={{ opacity: 0, y: 16, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -87,7 +92,12 @@ const ScrollToTopButton = () => {
               scale: 0.9,
               transition: { duration: 0.2, ease: "easeOut" },
             }}
-            transition={{ duration: 0.3, ease: "easeOut", delay: 0.12 }}
+            transition={{
+              duration: 0.3,
+              ease: "easeOut",
+              delay: 0.12,
+              layout: { type: "spring", stiffness: 280, damping: 24 },
+            }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="relative w-12 h-12 flex items-center justify-center"
           >
@@ -114,17 +124,18 @@ const ScrollToTopButton = () => {
           </motion.button>
         )}
       </AnimatePresence>
-      <AnimatePresence>
+      <AnimatePresence initial={false} mode="popLayout">
         {isVisible && !isAtBottom && (
           <motion.button
+            layout
             aria-label="Scroll to next section"
             initial={{ opacity: 0, y: -10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{
               opacity: 0,
-              y: -10,
-              scale: 0.9,
-              transition: { duration: 0.2, ease: "easeOut" },
+              y: 12,
+              scale: 0.75,
+              transition: { duration: 0.25, ease: "easeInOut" },
             }}
             transition={{ duration: 0.3, ease: "easeOut", delay: 0.12 }}
             onClick={scrollToNextSection}
@@ -153,7 +164,7 @@ const ScrollToTopButton = () => {
           </motion.button>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
