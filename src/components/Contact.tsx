@@ -138,8 +138,8 @@ const Contact = () => {
             <motion.div 
               className="p-3 rounded-lg bg-primary/10 text-primary"
               animate={{ scale: 1, rotate: 0 }}
-              whileHover={{ scale: 1.1, rotate: [0, -10, 10, -10, 0] }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 350, damping: 20 }}
             >
               <MapPin size={24} />
             </motion.div>
@@ -162,8 +162,8 @@ const Contact = () => {
             <motion.div 
               className="p-3 rounded-lg bg-primary/10 text-primary"
               animate={{ scale: 1, rotate: 0 }}
-              whileHover={{ scale: 1.1, rotate: [0, -10, 10, -10, 0] }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 350, damping: 20 }}
             >
               <Mail size={24} />
             </motion.div>
