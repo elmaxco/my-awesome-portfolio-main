@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNearViewport } from "@/hooks/use-near-viewport";
 
 const skills = [
   { name: "C#", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
@@ -38,8 +39,10 @@ const experienceStats = [
 ];
 
 const SkillsCarousel = () => {
+  const { elementRef: sectionRef, isNearViewport } = useNearViewport<HTMLElement>();
+
   return (
-    <section id="skills" className="py-24 overflow-hidden relative">
+    <section ref={sectionRef} id="skills" className="py-24 overflow-hidden relative">
       <div className="container px-6 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -80,8 +83,11 @@ const SkillsCarousel = () => {
               >
                 <div className="glass rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-3 hover:border-primary/50 transition-colors group">
                   <img
-                    src={skill.icon}
+                    src={isNearViewport ? skill.icon : undefined}
                     alt={skill.name}
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
                     className={`group-hover:scale-110 transition-transform ${
                       skill.name === "Optimizely" || skill.name === "Umbraco" 
                         ? "w-16 h-16 object-contain" 
@@ -122,8 +128,11 @@ const SkillsCarousel = () => {
               >
                 <div className="glass rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-3 hover:border-primary/50 transition-colors group">
                   <img
-                    src={skill.icon}
+                    src={isNearViewport ? skill.icon : undefined}
                     alt={skill.name}
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
                     className={`group-hover:scale-110 transition-transform ${
                       skill.name === "Optimizely" || skill.name === "Umbraco" 
                         ? "w-16 h-16 object-contain" 

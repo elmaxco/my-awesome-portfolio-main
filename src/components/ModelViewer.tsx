@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import '@google/model-viewer';
+import { useEffect } from 'react';
+import { useNearViewport } from '@/hooks/use-near-viewport';
 
 interface ModelViewerProps {
   src: string;
@@ -24,23 +24,23 @@ const ModelViewer = ({
   disableZoom = false,
   touchAction = 'pan-y'
 }: ModelViewerProps) => {
-  const viewerRef = useRef<HTMLElement>(null);
+  const { elementRef: viewerRef, isNearViewport } = useNearViewport<HTMLElement>();
 
   useEffect(() => {
-    // Ensure model-viewer is loaded
-    if (typeof window !== 'undefined' && !customElements.get('model-viewer')) {
-      import('@google/model-viewer');
+    if (isNearViewport && !customElements.get('model-viewer')) {
+      void import('@google/model-viewer');
     }
-  }, []);
+  }, [isNearViewport]);
 
   return (
     <model-viewer
-      ref={viewerRef as any}
-      src={src}
+      ref={viewerRef}
+      src={isNearViewport ? src : undefined}
       alt={alt}
       auto-rotate={autoRotate}
       camera-controls={cameraControls}
       shadow-intensity={shadowIntensity}
+      loading="lazy"
       touch-action={touchAction}
       disable-zoom={disableZoom}
       style={{

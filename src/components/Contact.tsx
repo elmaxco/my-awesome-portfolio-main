@@ -5,6 +5,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useState, useEffect, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useNearViewport } from "@/hooks/use-near-viewport";
 import ModelViewer from "./ModelViewer";
 import {
   Dialog,
@@ -27,6 +28,7 @@ const Contact = () => {
     message: "",
   });
   const [mapOpen, setMapOpen] = useState(false);
+  const { elementRef: sectionRef, isNearViewport } = useNearViewport<HTMLElement>();
   const [weather, setWeather] = useState<{
     temp: number;
     description: string;
@@ -48,8 +50,12 @@ const Contact = () => {
   );
 
   useEffect(() => {
-    // Fetch weather data for Stockholm
-    fetch('https://wttr.in/Stockholm?format=j1')
+    if (!isNearViewport) {
+      return;
+    }
+
+    const controller = new AbortController();
+    fetch('https://wttr.in/Stockholm?format=j1', { signal: controller.signal })
       .then(res => res.json())
       .then(data => {
         const current = data.current_condition[0];
@@ -60,10 +66,13 @@ const Contact = () => {
         });
       })
       .catch(() => {
-        // Fallback weather if API fails
-        setWeather({ temp: 5, description: "Cloudy", icon: "116" });
+        if (!controller.signal.aborted) {
+          setWeather({ temp: 5, description: "Cloudy", icon: "116" });
+        }
       });
-  }, []);
+
+    return () => controller.abort();
+  }, [isNearViewport]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,7 +115,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section ref={sectionRef} id="contact" className="py-24 relative">
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -133,22 +142,22 @@ const Contact = () => {
         >
           <button
             onClick={() => setMapOpen(true)}
-            className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full group"
+            className="flex min-w-0 items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full group"
           >
             <motion.div 
-              className="p-3 rounded-lg bg-primary/10 text-primary"
+              className="shrink-0 p-3 rounded-lg bg-primary/10 text-primary"
               animate={{ scale: 1, rotate: 0 }}
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 350, damping: 20 }}
             >
               <MapPin size={24} />
             </motion.div>
-            <div className="text-left flex-1">
+            <div className="min-w-0 text-left flex-1">
               <p className="text-sm text-muted-foreground">Location</p>
               <p className="font-medium">Stockholm, Sweden</p>
             </div>
             {weather && (
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex shrink-0 items-center gap-2 text-sm">
                 <CloudRain size={18} className="text-primary" />
                 <span className="font-medium">{weather.temp}°C</span>
               </div>
@@ -157,19 +166,19 @@ const Contact = () => {
           
           <a 
             href="mailto:max.jacobsson1999@hotmail.com"
-            className="flex items-center gap-4 glass rounded-xl p-4 w-full hover:bg-primary/5 transition-colors group"
+            className="flex min-w-0 items-center gap-4 glass rounded-xl p-4 w-full hover:bg-primary/5 transition-colors group"
           >
             <motion.div 
-              className="p-3 rounded-lg bg-primary/10 text-primary"
+              className="shrink-0 p-3 rounded-lg bg-primary/10 text-primary"
               animate={{ scale: 1, rotate: 0 }}
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 350, damping: 20 }}
             >
               <Mail size={24} />
             </motion.div>
-            <div className="text-left">
+            <div className="min-w-0 text-left">
               <p className="text-sm text-muted-foreground">Email</p>
-              <p className="font-medium">max.jacobsson1999@hotmail.com</p>
+              <p className="break-all font-medium sm:break-normal">max.jacobsson1999@hotmail.com</p>
             </div>
           </a>
         </motion.div>

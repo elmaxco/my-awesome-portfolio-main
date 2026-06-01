@@ -77,7 +77,7 @@ const ScrollToTopButton = () => {
     <motion.div
       layout
       transition={{ layout: { type: "spring", stiffness: 280, damping: 24 } }}
-      className="fixed bottom-6 right-6 z-[60] flex flex-col items-center gap-3"
+      className="fixed bottom-6 right-6 z-[60] hidden flex-col items-center gap-3 md:flex"
     >
       <AnimatePresence>
         {isVisible && (
