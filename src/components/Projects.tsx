@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Folder, Star } from "lucide-react";
 import { profileLinks } from "@/lib/profileLinks";
+import { useNearViewport } from "@/hooks/use-near-viewport";
 
 type Project = {
   title: string;
@@ -81,8 +82,10 @@ const techStack = [
 ];
 
 const Projects = () => {
+  const { elementRef: sectionRef, isNearViewport } = useNearViewport<HTMLElement>();
+
   return (
-    <section id="projects" className="py-24 relative">
+    <section ref={sectionRef} id="projects" className="py-24 relative">
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -118,8 +121,11 @@ const Projects = () => {
                   <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl aspect-video flex items-center justify-center overflow-hidden">
                     {project.image ? (
                       <img 
-                        src={project.image} 
+                        src={isNearViewport ? project.image : undefined}
                         alt={project.title}
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
                         className="w-full h-full object-cover"
                       />
                     ) : (

@@ -5,6 +5,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useState, useEffect, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useNearViewport } from "@/hooks/use-near-viewport";
 import ModelViewer from "./ModelViewer";
 import {
   Dialog,
@@ -27,6 +28,7 @@ const Contact = () => {
     message: "",
   });
   const [mapOpen, setMapOpen] = useState(false);
+  const { elementRef: sectionRef, isNearViewport } = useNearViewport<HTMLElement>();
   const [weather, setWeather] = useState<{
     temp: number;
     description: string;
@@ -48,8 +50,12 @@ const Contact = () => {
   );
 
   useEffect(() => {
-    // Fetch weather data for Stockholm
-    fetch('https://wttr.in/Stockholm?format=j1')
+    if (!isNearViewport) {
+      return;
+    }
+
+    const controller = new AbortController();
+    fetch('https://wttr.in/Stockholm?format=j1', { signal: controller.signal })
       .then(res => res.json())
       .then(data => {
         const current = data.current_condition[0];
@@ -60,10 +66,13 @@ const Contact = () => {
         });
       })
       .catch(() => {
-        // Fallback weather if API fails
-        setWeather({ temp: 5, description: "Cloudy", icon: "116" });
+        if (!controller.signal.aborted) {
+          setWeather({ temp: 5, description: "Cloudy", icon: "116" });
+        }
       });
-  }, []);
+
+    return () => controller.abort();
+  }, [isNearViewport]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,7 +115,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section ref={sectionRef} id="contact" className="py-24 relative">
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
