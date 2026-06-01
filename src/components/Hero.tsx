@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
 
@@ -256,18 +256,26 @@ const Hero = () => {
           >
             <Button
               size="lg"
-              className="bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity glow-primary"
+              className="group relative h-14 overflow-hidden rounded-full border border-primary/60 bg-gradient-primary px-7 text-sm font-semibold tracking-wide text-primary-foreground shadow-[0_0_0_1px_hsl(var(--primary)/0.12),0_14px_40px_hsl(var(--primary)/0.24)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_0_1px_hsl(var(--primary)/0.35),0_18px_50px_hsl(var(--primary)/0.4)] focus-visible:ring-primary"
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
             >
-              View My Work
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              <span className="relative z-10">View My Work</span>
+              <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-background/20 transition-transform duration-300 group-hover:translate-x-1 group-hover:-rotate-45">
+                <ArrowUpRight />
+              </span>
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="border-primary/50 hover:bg-primary/10 hover:border-primary"
+              className="group relative h-14 overflow-hidden rounded-full border-primary/30 bg-background/40 px-7 text-sm font-semibold tracking-wide text-foreground shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/70 hover:bg-primary/10 hover:text-foreground hover:shadow-[0_14px_35px_hsl(var(--primary)/0.14)] focus-visible:ring-primary"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
-              Get In Touch
+              <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-accent/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground">
+                <Mail />
+              </span>
+              <span className="relative z-10">Get In Touch</span>
             </Button>
           </motion.div>
         </motion.div>
