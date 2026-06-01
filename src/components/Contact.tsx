@@ -133,22 +133,22 @@ const Contact = () => {
         >
           <button
             onClick={() => setMapOpen(true)}
-            className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full group"
+            className="flex min-w-0 items-center gap-4 glass rounded-xl p-4 hover:bg-primary/5 transition-colors cursor-pointer w-full group"
           >
             <motion.div 
-              className="p-3 rounded-lg bg-primary/10 text-primary"
+              className="shrink-0 p-3 rounded-lg bg-primary/10 text-primary"
               animate={{ scale: 1, rotate: 0 }}
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 350, damping: 20 }}
             >
               <MapPin size={24} />
             </motion.div>
-            <div className="text-left flex-1">
+            <div className="min-w-0 text-left flex-1">
               <p className="text-sm text-muted-foreground">Location</p>
               <p className="font-medium">Stockholm, Sweden</p>
             </div>
             {weather && (
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex shrink-0 items-center gap-2 text-sm">
                 <CloudRain size={18} className="text-primary" />
                 <span className="font-medium">{weather.temp}°C</span>
               </div>
@@ -157,19 +157,19 @@ const Contact = () => {
           
           <a 
             href="mailto:max.jacobsson1999@hotmail.com"
-            className="flex items-center gap-4 glass rounded-xl p-4 w-full hover:bg-primary/5 transition-colors group"
+            className="flex min-w-0 items-center gap-4 glass rounded-xl p-4 w-full hover:bg-primary/5 transition-colors group"
           >
             <motion.div 
-              className="p-3 rounded-lg bg-primary/10 text-primary"
+              className="shrink-0 p-3 rounded-lg bg-primary/10 text-primary"
               animate={{ scale: 1, rotate: 0 }}
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 350, damping: 20 }}
             >
               <Mail size={24} />
             </motion.div>
-            <div className="text-left">
+            <div className="min-w-0 text-left">
               <p className="text-sm text-muted-foreground">Email</p>
-              <p className="font-medium">max.jacobsson1999@hotmail.com</p>
+              <p className="break-all font-medium sm:break-normal">max.jacobsson1999@hotmail.com</p>
             </div>
           </a>
         </motion.div>
