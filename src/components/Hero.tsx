@@ -256,7 +256,7 @@ const Hero = () => {
           >
             <Button
               size="lg"
-              className="group relative h-14 overflow-hidden rounded-full border border-primary/60 bg-gradient-primary px-7 text-sm font-semibold tracking-wide text-primary-foreground shadow-[0_0_0_1px_hsl(var(--primary)/0.12),0_14px_40px_hsl(var(--primary)/0.24)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_0_1px_hsl(var(--primary)/0.35),0_18px_50px_hsl(var(--primary)/0.4)] focus-visible:ring-primary"
+              className="group relative h-14 w-52 overflow-hidden rounded-full border border-primary/60 bg-gradient-primary px-7 text-sm font-semibold tracking-wide text-primary-foreground shadow-[0_0_0_1px_hsl(var(--primary)/0.12),0_14px_40px_hsl(var(--primary)/0.24)] transition-all duration-300 hover:shadow-[0_0_0_1px_hsl(var(--primary)/0.35),0_18px_50px_hsl(var(--primary)/0.4)] focus-visible:ring-primary"
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
@@ -268,7 +268,7 @@ const Hero = () => {
             <Button
               variant="outline"
               size="lg"
-              className="group relative h-14 overflow-hidden rounded-full border-primary/30 bg-background/40 px-7 text-sm font-semibold tracking-wide text-foreground shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/70 hover:bg-primary/10 hover:text-foreground hover:shadow-[0_14px_35px_hsl(var(--primary)/0.14)] focus-visible:ring-primary"
+              className="group relative h-14 w-52 overflow-hidden rounded-full border-primary/30 bg-background/40 px-7 text-sm font-semibold tracking-wide text-foreground shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.03)] backdrop-blur-sm transition-all duration-300 hover:border-primary/70 hover:bg-primary/10 hover:text-foreground hover:shadow-[0_14px_35px_hsl(var(--primary)/0.14)] focus-visible:ring-primary"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-accent/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
