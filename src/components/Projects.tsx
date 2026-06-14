@@ -74,11 +74,11 @@ const projects: Project[] = [
   },
 ];
 
-const techStack = [
-  { category: "Frontend", items: ["React", "Vue.js", "TypeScript", "Tailwind CSS", "Next.js"] },
-  { category: "Backend", items: ["Node.js", "C#/.NET", "PHP/Laravel", "Python", "Express"] },
-  { category: "Database", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Firebase"] },
-  { category: "DevOps", items: ["Docker", "AWS", "CI/CD", "Kubernetes", "Nginx"] },
+const aiToolkit = [
+  { category: "AI Assistants", items: ["OpenAI", "Claude", "Gemini", "Perplexity"] },
+  { category: "Coding AI", items: ["Cursor", "GitHub Copilot", "OpenAI Codex", "Claude Code"] },
+  { category: "Build & Prototype", items: ["v0", "Bolt", "ChatGPT", "Notion AI"] },
+  { category: "AI Workflows", items: ["OpenAI API", "LangChain", "Prompt Engineering", "Automation"] },
 ];
 
 const Projects = () => {
@@ -246,7 +246,7 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Tech Stack Overview */}
+        {/* AI Toolkit Overview */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -254,14 +254,14 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h3 className="text-2xl font-bold mb-4">Full Technology Stack</h3>
+          <h3 className="text-2xl font-bold mb-4">AI Tools I Work With</h3>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            The complete toolkit I use to build modern, scalable applications
+            AI assistants and development tools I use to research, build, debug, and ship better software
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {techStack.map((stack, index) => (
+          {aiToolkit.map((stack, index) => (
             <motion.div
               key={stack.category}
               initial={{ opacity: 0, y: 20 }}
