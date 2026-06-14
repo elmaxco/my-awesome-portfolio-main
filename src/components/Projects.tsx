@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Bot, Code2, ExternalLink, Folder, Github, Sparkles, Workflow } from "lucide-react";
+import { ExternalLink, Folder, Github, Sparkles } from "lucide-react";
 import { profileLinks } from "@/lib/profileLinks";
 import { useNearViewport } from "@/hooks/use-near-viewport";
 
@@ -76,28 +76,25 @@ const projects: Project[] = [
 
 const aiToolkit = [
   {
-    category: "AI Assistants",
-    description: "For research, ideation, planning, and working through complex problems.",
-    icon: Bot,
-    items: ["OpenAI", "Claude", "Gemini", "Perplexity"],
+    name: "OpenAI",
+    logo: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg",
+    accent: "from-emerald-400/20 to-teal-400/5",
+    invert: true,
   },
   {
-    category: "Coding AI",
-    description: "For pair programming, debugging, refactoring, and code reviews.",
-    icon: Code2,
-    items: ["Cursor", "GitHub Copilot", "OpenAI Codex", "Claude Code"],
+    name: "Claude",
+    logo: "https://cdn.simpleicons.org/claude/D97757",
+    accent: "from-orange-400/20 to-amber-400/5",
   },
   {
-    category: "Build & Prototype",
-    description: "For quickly turning product ideas into testable interfaces and flows.",
-    icon: Sparkles,
-    items: ["v0", "Bolt", "ChatGPT", "Notion AI"],
+    name: "Cursor",
+    logo: "https://cdn.simpleicons.org/cursor/ffffff",
+    accent: "from-violet-400/20 to-indigo-400/5",
   },
   {
-    category: "AI Workflows",
-    description: "For connecting models to applications and repeatable development tasks.",
-    icon: Workflow,
-    items: ["OpenAI API", "LangChain", "Prompt Engineering", "Automation"],
+    name: "GitHub Copilot",
+    logo: "https://cdn.simpleicons.org/githubcopilot/ffffff",
+    accent: "from-cyan-400/20 to-blue-400/5",
   },
 ];
 
@@ -286,48 +283,38 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 max-w-6xl mx-auto">
-          {aiToolkit.map((stack, index) => (
-            <motion.div
-              key={stack.category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl border border-border/80 bg-card/45 p-6 text-left backdrop-blur-md transition-[border-color,background-color,box-shadow] duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_20px_60px_hsl(var(--primary)/0.10)]"
-            >
-              <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-              <div className="mb-5 flex items-center justify-between">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/15 bg-primary/10 text-primary shadow-[0_0_24px_hsl(var(--primary)/0.08)]">
-                  <stack.icon size={21} />
-                </div>
-                <span className="font-mono text-[10px] tracking-[0.2em] text-primary/50">
-                  0{index + 1}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-primary/15 bg-card/40 p-3 shadow-[0_24px_80px_hsl(var(--primary)/0.08)] backdrop-blur-md sm:p-4"
+        >
+          <div className="absolute inset-x-20 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+            {aiToolkit.map((tool, index) => (
+              <motion.div
+                key={tool.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: index * 0.08 }}
+                className={`group flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl bg-gradient-to-br ${tool.accent} px-4 py-6 transition-colors duration-300 hover:bg-primary/10`}
+              >
+                <img
+                  src={tool.logo}
+                  alt={`${tool.name} logo`}
+                  loading="lazy"
+                  decoding="async"
+                  className={`h-12 w-12 object-contain opacity-90 transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14 ${tool.invert ? "invert" : ""}`}
+                />
+                <span className="text-center text-sm font-semibold text-foreground sm:text-base">
+                  {tool.name}
                 </span>
-              </div>
-
-              <h4 className="mb-2 text-lg font-semibold transition-colors group-hover:text-primary">
-                {stack.category}
-              </h4>
-              <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
-                {stack.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {stack.items.map((item) => (
-                  <span
-                    key={item}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-secondary/50 px-2.5 py-1.5 text-xs font-mono text-muted-foreground transition-colors duration-300 group-hover:border-primary/20 group-hover:text-foreground"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
       </div>
     </section>
