@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Folder, Star } from "lucide-react";
+import { Bot, Code2, ExternalLink, Folder, Github, Sparkles, Workflow } from "lucide-react";
 import { profileLinks } from "@/lib/profileLinks";
 import { useNearViewport } from "@/hooks/use-near-viewport";
 
@@ -75,10 +75,30 @@ const projects: Project[] = [
 ];
 
 const aiToolkit = [
-  { category: "AI Assistants", items: ["OpenAI", "Claude", "Gemini", "Perplexity"] },
-  { category: "Coding AI", items: ["Cursor", "GitHub Copilot", "OpenAI Codex", "Claude Code"] },
-  { category: "Build & Prototype", items: ["v0", "Bolt", "ChatGPT", "Notion AI"] },
-  { category: "AI Workflows", items: ["OpenAI API", "LangChain", "Prompt Engineering", "Automation"] },
+  {
+    category: "AI Assistants",
+    description: "For research, ideation, planning, and working through complex problems.",
+    icon: Bot,
+    items: ["OpenAI", "Claude", "Gemini", "Perplexity"],
+  },
+  {
+    category: "Coding AI",
+    description: "For pair programming, debugging, refactoring, and code reviews.",
+    icon: Code2,
+    items: ["Cursor", "GitHub Copilot", "OpenAI Codex", "Claude Code"],
+  },
+  {
+    category: "Build & Prototype",
+    description: "For quickly turning product ideas into testable interfaces and flows.",
+    icon: Sparkles,
+    items: ["v0", "Bolt", "ChatGPT", "Notion AI"],
+  },
+  {
+    category: "AI Workflows",
+    description: "For connecting models to applications and repeatable development tasks.",
+    icon: Workflow,
+    items: ["OpenAI API", "LangChain", "Prompt Engineering", "Automation"],
+  },
 ];
 
 const Projects = () => {
@@ -254,13 +274,19 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h3 className="text-2xl font-bold mb-4">AI Tools I Work With</h3>
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1">
+            <Sparkles className="text-primary" size={14} />
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-primary">
+              AI-assisted workflow
+            </span>
+          </div>
+          <h3 className="text-3xl font-bold mb-4">My AI Toolkit</h3>
           <p className="text-muted-foreground max-w-xl mx-auto">
             AI assistants and development tools I use to research, build, debug, and ship better software
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 max-w-6xl mx-auto">
           {aiToolkit.map((stack, index) => (
             <motion.div
               key={stack.category}
@@ -268,22 +294,33 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="glass rounded-xl p-6 hover:border-primary/50 transition-all group"
+              className="group relative overflow-hidden rounded-2xl border border-border/80 bg-card/45 p-6 text-left backdrop-blur-md transition-[border-color,background-color,box-shadow] duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_20px_60px_hsl(var(--primary)/0.10)]"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Star className="text-primary" size={20} />
+              <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+              <div className="mb-5 flex items-center justify-between">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/15 bg-primary/10 text-primary shadow-[0_0_24px_hsl(var(--primary)/0.08)]">
+                  <stack.icon size={21} />
                 </div>
-                <h4 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                  {stack.category}
-                </h4>
+                <span className="font-mono text-[10px] tracking-[0.2em] text-primary/50">
+                  0{index + 1}
+                </span>
               </div>
+
+              <h4 className="mb-2 text-lg font-semibold transition-colors group-hover:text-primary">
+                {stack.category}
+              </h4>
+              <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                {stack.description}
+              </p>
+
               <div className="flex flex-wrap gap-2">
                 {stack.items.map((item) => (
                   <span
                     key={item}
-                    className="px-2 py-1 text-xs font-mono bg-secondary/50 rounded-md text-muted-foreground"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-secondary/50 px-2.5 py-1.5 text-xs font-mono text-muted-foreground transition-colors duration-300 group-hover:border-primary/20 group-hover:text-foreground"
                   >
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
                     {item}
                   </span>
                 ))}
