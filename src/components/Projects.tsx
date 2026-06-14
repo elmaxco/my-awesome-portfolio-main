@@ -288,8 +288,9 @@ const Projects = () => {
             </span>
           </div>
           <h3 className="text-3xl font-bold mb-4">My AI Toolkit</h3>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            AI assistants and development tools I use to research, build, debug, and ship better software
+          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            I&apos;m experienced in working with a range of AI tools throughout the development process,
+            from research and planning to coding, debugging, and rapid prototyping.
           </p>
         </motion.div>
 
