@@ -1,42 +1,47 @@
 import { motion } from "framer-motion";
 import { useNearViewport } from "@/hooks/use-near-viewport";
 
-const skills = [
-  { name: "C#", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
-  { name: ".NET", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" },
-  { name: "Visual Basic", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualbasic/visualbasic-original.svg" },
-  { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-  { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "Rust", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" },
-  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-  { name: "Fork", icon: "https://git-fork.com/images/logo.png" },
-  { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
-  { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-  { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-  { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-  { name: "Bootstrap", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-  { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
-  { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
-  { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-  { name: "Vercel", icon: "/images/vercel-icon.svg" },
-  { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-  { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-  { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
-  { name: "Umbraco", icon: "/UbracoTrans.png" },
-  { name: "Optimizely", icon: "/optimizely-seeklogo.png" },
+type CarouselItem = {
+  name: string;
+  icon: string;
+};
+
+const makeMonogramIcon = (label: string, background: string, foreground = "#f8fafc") => {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="${label}">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="${background}" />
+          <stop offset="100%" stop-color="#0f172a" />
+        </linearGradient>
+      </defs>
+      <rect width="96" height="96" rx="24" fill="url(#bg)" />
+      <text x="48" y="56" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="${foreground}">${label}</text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+};
+
+const aiTools: CarouselItem[] = [
+  { name: "OpenAI", icon: makeMonogramIcon("OA", "#10b981") },
+  { name: "Claude", icon: makeMonogramIcon("CL", "#f97316") },
+  { name: "Cursor", icon: makeMonogramIcon("CU", "#6366f1") },
+  { name: "GitHub Copilot", icon: makeMonogramIcon("CP", "#14b8a6") },
+  { name: "Perplexity", icon: makeMonogramIcon("PX", "#06b6d4") },
+  { name: "Gemini", icon: makeMonogramIcon("GM", "#8b5cf6") },
+  { name: "v0", icon: makeMonogramIcon("V0", "#ec4899") },
+  { name: "ChatGPT", icon: makeMonogramIcon("CG", "#22c55e") },
+  { name: "Copilot", icon: makeMonogramIcon("CP", "#0ea5e9") },
+  { name: "Bolt", icon: makeMonogramIcon("BL", "#f59e0b") },
+  { name: "Notion AI", icon: makeMonogramIcon("AI", "#52525b") },
+  { name: "LangChain", icon: makeMonogramIcon("LC", "#84cc16") },
 ];
 
 const experienceStats = [
   { value: "2", label: "Years Experience" },
   { value: "20+", label: "Projects Completed" },
-  { value: "20+", label: "Technologies" },
+  { value: "12", label: "AI Tools" },
 ];
 
 const SkillsCarousel = () => {
@@ -53,9 +58,9 @@ const SkillsCarousel = () => {
           className="text-center"
         >
           <p className="text-primary font-mono text-sm mb-2">02. Skills</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Technologies I Work With</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">AI Tools I Work With</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A collection of technologies and tools I use to bring ideas to life
+            A collection of AI tools and assistants I use to speed up design, coding, and research
           </p>
         </motion.div>
       </div>
@@ -76,7 +81,7 @@ const SkillsCarousel = () => {
               repeat: Infinity,
             }}
           >
-            {[...skills, ...skills].map((skill, index) => (
+            {[...aiTools, ...aiTools].map((skill, index) => (
               <div
                 key={`${skill.name}-${index}`}
                 className="flex-shrink-0 mx-2"
@@ -90,7 +95,7 @@ const SkillsCarousel = () => {
                     decoding="async"
                     fetchPriority="low"
                     className={`group-hover:scale-110 transition-transform ${
-                      skill.name === "Optimizely" || skill.name === "Umbraco" 
+                      skill.name === "OpenAI" || skill.name === "Claude" || skill.name === "Cursor" || skill.name === "GitHub Copilot"
                         ? "w-16 h-16 object-contain" 
                         : "w-12 h-12"
                     }`}
@@ -121,7 +126,7 @@ const SkillsCarousel = () => {
               repeat: Infinity,
             }}
           >
-            {[...skills, ...skills].reverse().map((skill, index) => (
+            {[...aiTools, ...aiTools].reverse().map((skill, index) => (
               <div
                 key={`${skill.name}-reverse-${index}`}
                 className="flex-shrink-0 mx-2"
@@ -135,7 +140,7 @@ const SkillsCarousel = () => {
                     decoding="async"
                     fetchPriority="low"
                     className={`group-hover:scale-110 transition-transform ${
-                      skill.name === "Optimizely" || skill.name === "Umbraco" 
+                      skill.name === "OpenAI" || skill.name === "Claude" || skill.name === "Cursor" || skill.name === "GitHub Copilot"
                         ? "w-16 h-16 object-contain" 
                         : "w-12 h-12"
                     }`}
