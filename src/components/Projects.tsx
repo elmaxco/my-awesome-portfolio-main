@@ -96,6 +96,16 @@ const aiToolkit = [
     logo: "https://cdn.simpleicons.org/githubcopilot/ffffff",
     accent: "from-cyan-400/20 to-blue-400/5",
   },
+  {
+    name: "xAI",
+    logo: "https://cdn.simpleicons.org/x/ffffff",
+    accent: "from-slate-300/15 to-slate-500/5",
+  },
+  {
+    name: "Gemini",
+    logo: "https://cdn.simpleicons.org/googlegemini/8E75FF",
+    accent: "from-fuchsia-400/20 to-blue-400/5",
+  },
 ];
 
 const Projects = () => {
@@ -291,7 +301,7 @@ const Projects = () => {
           className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-primary/15 bg-card/40 p-3 shadow-[0_24px_80px_hsl(var(--primary)/0.08)] backdrop-blur-md sm:p-4"
         >
           <div className="absolute inset-x-20 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
             {aiToolkit.map((tool, index) => (
               <motion.div
                 key={tool.name}
