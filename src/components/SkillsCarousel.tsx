@@ -27,7 +27,7 @@ const aiTools: CarouselItem[] = [
   { name: "OpenAI", icon: makeMonogramIcon("OA", "#10b981") },
   { name: "Claude", icon: makeMonogramIcon("CL", "#f97316") },
   { name: "Cursor", icon: makeMonogramIcon("CU", "#6366f1") },
-  { name: "GitHub Copilot", icon: makeMonogramIcon("CP", "#14b8a6") },
+  { name: "GitHub Copilot", icon: makeMonogramIcon("GC", "#14b8a6") },
   { name: "Perplexity", icon: makeMonogramIcon("PX", "#06b6d4") },
   { name: "Gemini", icon: makeMonogramIcon("GM", "#8b5cf6") },
   { name: "v0", icon: makeMonogramIcon("V0", "#ec4899") },
