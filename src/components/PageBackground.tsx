@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type Particle = {
   left: string;
@@ -11,6 +12,7 @@ type Particle = {
 };
 
 const PageBackground = () => {
+  const isMobile = useIsMobile();
   const particles = useMemo<Particle[]>(() => {
     const seed = 1337;
     let s = seed;
@@ -69,6 +71,20 @@ const PageBackground = () => {
       };
     });
   }, []);
+
+  if (isMobile) {
+    return (
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-70"
+          style={{
+            background:
+              "radial-gradient(circle at 22% 8%, hsl(174 72% 56% / 0.14), transparent 32%), radial-gradient(circle at 85% 38%, hsl(270 70% 60% / 0.1), transparent 34%)",
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
