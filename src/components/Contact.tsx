@@ -6,6 +6,7 @@ import { Textarea } from "./ui/textarea";
 import { useState, useEffect, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNearViewport } from "@/hooks/use-near-viewport";
+import { useIsMobile } from "@/hooks/use-mobile";
 import ModelViewer from "./ModelViewer";
 import {
   Dialog,
@@ -17,6 +18,7 @@ import {
 
 const Contact = () => {
   const { toast } = useToast();
+  const isMobile = useIsMobile();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,8 +38,12 @@ const Contact = () => {
   } | null>(null);
 
   const stars = useMemo(
-    () =>
-      [...Array(80)].map((_, index) => ({
+    () => {
+      if (isMobile) {
+        return [];
+      }
+
+      return [...Array(80)].map((_, index) => ({
         id: `star-${index}`,
         left: Math.random() * 100,
         top: Math.random() * 100,
@@ -45,8 +51,9 @@ const Contact = () => {
         twinkleOpacity: Math.random() * 0.5 + 0.3,
         duration: Math.random() * 3 + 2,
         delay: Math.random() * 2,
-      })),
-    []
+      }));
+    },
+    [isMobile]
   );
 
   useEffect(() => {
@@ -185,51 +192,53 @@ const Contact = () => {
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* 3D Model */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center justify-center"
-          >
-            <div className="glass rounded-2xl overflow-hidden w-full h-full flex flex-col">
-              <div className="relative flex-1 bg-gradient-to-b from-slate-950 via-slate-900 to-black">
-                {/* Animated stars background */}
-                <div className="absolute inset-0">
-                  {stars.map((star) => (
-                    <motion.div
-                      key={star.id}
-                      className="absolute w-1 h-1 bg-white rounded-full"
-                      style={{
-                        left: `${star.left}%`,
-                        top: `${star.top}%`,
-                        opacity: star.baseOpacity,
-                      }}
-                      animate={{
-                        opacity: [star.twinkleOpacity, 1, star.twinkleOpacity],
-                        scale: [1, 1.5, 1],
-                      }}
-                      transition={{
-                        duration: star.duration,
-                        repeat: Infinity,
-                        delay: star.delay,
-                      }}
-                    />
-                  ))}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center"
+            >
+              <div className="glass rounded-2xl overflow-hidden w-full h-full flex flex-col">
+                <div className="relative flex-1 bg-gradient-to-b from-slate-950 via-slate-900 to-black">
+                  {/* Animated stars background */}
+                  <div className="absolute inset-0">
+                    {stars.map((star) => (
+                      <motion.div
+                        key={star.id}
+                        className="absolute w-1 h-1 bg-white rounded-full"
+                        style={{
+                          left: `${star.left}%`,
+                          top: `${star.top}%`,
+                          opacity: star.baseOpacity,
+                        }}
+                        animate={{
+                          opacity: [star.twinkleOpacity, 1, star.twinkleOpacity],
+                          scale: [1, 1.5, 1],
+                        }}
+                        transition={{
+                          duration: star.duration,
+                          repeat: Infinity,
+                          delay: star.delay,
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <ModelViewer
+                    src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                    alt="3D Model Showcase"
+                    autoRotate={true}
+                    cameraControls={true}
+                    shadowIntensity="1"
+                    disableZoom={false}
+                    touchAction="pan-y"
+                    className="rounded-xl relative z-10"
+                  />
                 </div>
-                <ModelViewer
-                  src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-                  alt="3D Model Showcase"
-                  autoRotate={true}
-                  cameraControls={true}
-                  shadowIntensity="1"
-                  disableZoom={false}
-                  touchAction="pan-y"
-                  className="rounded-xl relative z-10"
-                />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
 
           {/* Contact Form */}
           <motion.div

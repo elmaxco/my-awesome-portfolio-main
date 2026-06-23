@@ -25,7 +25,11 @@ const Navigation = () => {
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.hash = href;
+    }
     setIsMobileMenuOpen(false);
   };
 
